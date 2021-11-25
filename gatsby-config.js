@@ -1,18 +1,20 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Pekkis.dev`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Mikko "Pekkis" Forsström`,
+      summary: `Ohjelmoitsija. Saarnamies. Opettaja. Lamantiini- ja leffafani.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://pekkis.dev/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `pekkisx`,
     },
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
+    /*
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -20,6 +22,8 @@ module.exports = {
         name: `blog`,
       },
     },
+    */
+    /*
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,6 +31,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    */
+    /*
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -49,6 +55,7 @@ module.exports = {
         ],
       },
     },
+    */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     // {
@@ -57,6 +64,7 @@ module.exports = {
     //     trackingId: `ADD YOUR TRACKING ID HERE`,
     //   },
     // },
+    /*
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -110,11 +118,12 @@ module.exports = {
         ],
       },
     },
+    */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Pekkis.dev`,
+        short_name: `Pekkis`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
@@ -128,5 +137,14 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
   ],
 }

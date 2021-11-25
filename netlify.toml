@@ -1,0 +1,8 @@
+[build]
+  base = "/"
+  publish = "public/"
+  command = "yarn run build"
+  environment = { }
+
+[[plugins]]
+  package = "@netlify/plugin-gatsby"
