@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { blogPostUrl } from "../services/url"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -40,7 +41,7 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.slug} itemProp="url">
+                    <Link to={blogPostUrl(post)} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>

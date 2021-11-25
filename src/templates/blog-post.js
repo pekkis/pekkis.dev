@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import RichText from "../components/RichText"
+import { blogPostUrl } from "../services/url"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.contentfulBlogPost
@@ -43,14 +44,14 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.slug} rel="prev">
+              <Link to={blogPostUrl(previous)} rel="prev">
                 ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.slug} rel="next">
+              <Link to={blogPostUrl(next)} rel="next">
                 {next.title} →
               </Link>
             )}
