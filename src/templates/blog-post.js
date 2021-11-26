@@ -6,11 +6,14 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import RichText from "../components/RichText"
 import { blogPostUrl } from "../services/url"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.contentfulBlogPost
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+
+  console.log("POST", post)
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -23,6 +26,13 @@ const BlogPostTemplate = ({ data, location }) => {
         <header>
           <h1 itemProp="headline">{post.title}</h1>
           <p>{post.date}</p>
+
+          {post.mainImage && (
+            <GatsbyImage
+              image={getImage(post.mainImage.image)}
+              alt={post.mainImage.alternateText}
+            />
+          )}
         </header>
         <hr />
 
@@ -83,8 +93,49 @@ export const pageQuery = graphql`
       ingress {
         ingress
       }
+      mainImage {
+        id
+        alternateText
+        image {
+          gatsbyImageData(
+            layout: CONSTRAINED
+            formats: [AUTO, WEBP]
+            placeholder: BLURRED
+            resizingBehavior: FILL
+            quality: 80
+            width: 1000
+          )
+        }
+      }
+      primaryImage {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          formats: [AUTO, WEBP]
+          placeholder: BLURRED
+          resizingBehavior: FILL
+          quality: 80
+          width: 1000
+        )
+      }
       content {
         raw
+        references {
+          __typename
+          contentful_id
+          ... on ContentfulAsset {
+            id
+            title
+            description
+            gatsbyImageData(
+              layout: CONSTRAINED
+              formats: [AUTO, WEBP]
+              placeholder: BLURRED
+              resizingBehavior: FILL
+              quality: 80
+              width: 1000
+            )
+          }
+        }
       }
     }
     previous: contentfulBlogPost(id: { eq: $previousPostId }) {

@@ -1,5 +1,9 @@
 require("ts-node").register()
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Pekkis.dev`,
@@ -7,8 +11,8 @@ module.exports = {
       name: `Mikko "Pekkis" Forsström`,
       summary: `Ohjelmoitsija. Saarnamies. Opettaja. Lamantiini- ja leffafani.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://pekkis.dev/`,
+    description: `Pekkis.`,
+    siteUrl: `https://pekkis.eu/`,
     social: {
       twitter: `pekkisx`,
     },
