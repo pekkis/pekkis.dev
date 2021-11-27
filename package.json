@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@contentful/rich-text-types": "^15.7.0",
+    "@theme-ui/color": "^0.12.1",
     "@theme-ui/presets": "^0.12.1",
+    "@vanilla-extract/css": "^1.6.4",
     "gatsby": "^4.2.0",
     "gatsby-plugin-feed": "^4.2.0",
     "gatsby-plugin-google-analytics": "^4.2.0",
@@ -19,6 +21,7 @@
     "gatsby-plugin-offline": "^5.2.0",
     "gatsby-plugin-react-helmet": "^5.2.0",
     "gatsby-plugin-sharp": "^4.2.0",
+    "gatsby-plugin-vanilla-extract": "^1.0.5",
     "gatsby-remark-copy-linked-files": "^5.2.0",
     "gatsby-remark-images": "^6.2.0",
     "gatsby-remark-prismjs": "^6.2.0",

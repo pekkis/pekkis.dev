@@ -18,6 +18,8 @@ module.exports = {
     },
   },
   plugins: [
+    // "gatsby-plugin-theme-ui",
+    `gatsby-plugin-vanilla-extract`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
     /*
