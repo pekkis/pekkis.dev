@@ -24,15 +24,15 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.title}</h1>
-          <p>{post.date}</p>
-
           {post.mainImage && (
             <GatsbyImage
               image={getImage(post.mainImage.image)}
               alt={post.mainImage.alternateText}
             />
           )}
+
+          <h1 itemProp="headline">{post.title}</h1>
+          <p>{post.date}</p>
         </header>
         <hr />
 
@@ -106,16 +106,6 @@ export const pageQuery = graphql`
             width: 1000
           )
         }
-      }
-      primaryImage {
-        gatsbyImageData(
-          layout: CONSTRAINED
-          formats: [AUTO, WEBP]
-          placeholder: BLURRED
-          resizingBehavior: FILL
-          quality: 80
-          width: 1000
-        )
       }
       content {
         raw
