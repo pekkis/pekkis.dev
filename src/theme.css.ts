@@ -1,10 +1,15 @@
-import { createTheme, style } from "@vanilla-extract/css"
+import { createGlobalTheme, style } from "@vanilla-extract/css";
 
-export const [themeClass, vars] = createTheme({
+export const vars = createGlobalTheme(":root", {
   color: {
     brand: "blue",
+    white: "white"
   },
   font: {
-    body: "arial",
+    body: "Merriweather"
   },
-})
+
+  fontWeight: {
+    body: "400"
+  }
+});

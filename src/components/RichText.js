@@ -1,20 +1,20 @@
-import React from "react"
+import React from "react";
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const Bold = ({ children }) => <span className="bold">{children}</span>
-const Text = ({ children }) => <p className="align-center">{children}</p>
+const Bold = ({ children }) => <span className="bold">{children}</span>;
+const Text = ({ children }) => <p className="align-center">{children}</p>;
 
 const options = {
   renderMark: {
-    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+    [MARKS.BOLD]: (text) => <Bold>{text}</Bold>
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     [BLOCKS.EMBEDDED_ASSET]: (node, two, three) => {
-      console.log(node, two, three, "NOUD")
+      console.log(node, two, three, "NOUD");
 
       if (node.data.target.gatsbyImageData) {
         return (
@@ -25,7 +25,7 @@ const options = {
             />
             {node.data.target.description}
           </>
-        )
+        );
       }
 
       return (
@@ -35,19 +35,21 @@ const options = {
             <code>{JSON.stringify(node, null, 2)}</code>
           </pre>
         </>
-      )
-    },
-  },
-}
+      );
+    }
+  }
+};
 
-const RichText = props => {
-  console.log(JSON.parse(props.richText.raw), "hihi")
+const RichText = (props) => {
+  console.log("PROPPO", props);
 
-  const tussi = renderRichText(props.richText, options)
+  console.log(JSON.parse(props.richText.raw), "hihi");
 
-  console.log(tussi)
+  const tussi = renderRichText(props.richText, options);
 
-  return <div>{tussi}</div>
-}
+  console.log(tussi);
 
-export default RichText
+  return <div>{tussi}</div>;
+};
+
+export default RichText;

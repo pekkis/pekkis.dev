@@ -22,6 +22,7 @@
     "gatsby-plugin-react-helmet": "^5.2.0",
     "gatsby-plugin-sharp": "^4.2.0",
     "gatsby-plugin-vanilla-extract": "^1.0.5",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-copy-linked-files": "^5.2.0",
     "gatsby-remark-images": "^6.2.0",
     "gatsby-remark-prismjs": "^6.2.0",

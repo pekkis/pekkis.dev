@@ -1,19 +1,20 @@
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+import * as React from "react";
+import { Link, graphql } from "gatsby";
 
-import Bio from "../components/Bio"
-import Layout from "../components/Layout"
-import Seo from "../components/Seo"
-import RichText from "../components/RichText"
-import { blogPostUrl } from "../services/url"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Bio from "../components/Bio";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
+import BlogContent from "../components/BlogContent";
+import { blogPostUrl } from "../services/url";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import BlogHeader from "../components/BlogHeader";
 
 const BlogPostTemplate = ({ data, location }) => {
-  const post = data.contentfulBlogPost
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const { previous, next } = data
+  const post = data.contentfulBlogPost;
+  const siteTitle = data.site.siteMetadata?.title || `Title`;
+  const { previous, next } = data;
 
-  console.log("POST", post)
+  console.log("POST CONTENNT", post.content);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -23,20 +24,8 @@ const BlogPostTemplate = ({ data, location }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          {post.mainImage && (
-            <GatsbyImage
-              image={getImage(post.mainImage.image)}
-              alt={post.mainImage.alternateText}
-            />
-          )}
-
-          <h1 itemProp="headline">{post.title}</h1>
-          <p>{post.date}</p>
-        </header>
-        <hr />
-
-        <RichText richText={post.content} />
+        <BlogHeader post={post} />
+        <BlogContent post={post} />
 
         <footer>
           <Bio />
@@ -49,7 +38,7 @@ const BlogPostTemplate = ({ data, location }) => {
             flexWrap: `wrap`,
             justifyContent: `space-between`,
             listStyle: `none`,
-            padding: 0,
+            padding: 0
           }}
         >
           <li>
@@ -69,10 +58,10 @@ const BlogPostTemplate = ({ data, location }) => {
         </ul>
       </nav>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostById(
@@ -104,6 +93,7 @@ export const pageQuery = graphql`
             resizingBehavior: FILL
             quality: 80
             width: 1000
+            aspectRatio: 2
           )
         }
       }
@@ -141,4 +131,4 @@ export const pageQuery = graphql`
       title
     }
   }
-`
+`;

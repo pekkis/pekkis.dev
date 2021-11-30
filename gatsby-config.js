@@ -1,23 +1,31 @@
-require("ts-node").register()
+require("ts-node").register();
 
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+  path: `.env.${process.env.NODE_ENV}`
+});
 
 module.exports = {
   siteMetadata: {
-    title: `Pekkis.dev`,
+    title: `Pekkis.eu`,
     author: {
       name: `Mikko "Pekkis" Forsström`,
-      summary: `Ohjelmoitsija. Saarnamies. Opettaja. Lamantiini- ja leffafani.`,
+      summary: `Ohjelmoitsija. Saarnamies. Opettaja. Lamantiini- ja leffafani.`
     },
     description: `Pekkis.`,
     siteUrl: `https://pekkis.eu/`,
     social: {
-      twitter: `pekkisx`,
-    },
+      twitter: `pekkisx`
+    }
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: "dre0vgf"
+        }
+      }
+    },
     // "gatsby-plugin-theme-ui",
     `gatsby-plugin-vanilla-extract`,
     `gatsby-plugin-netlify`,
@@ -138,8 +146,8 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
+        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+      }
     },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
@@ -151,8 +159,8 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
-    },
-  ],
-}
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
+    }
+  ]
+};
