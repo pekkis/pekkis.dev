@@ -4,12 +4,22 @@ import { vars } from "../theme.css";
 export const base = style({
   marginTop: 0,
   marginBottom: "2em",
-  paddingLeft: "1em",
-  paddingRight: "1em",
-  paddingTop: "1em"
+  backgroundColor: "transparent",
+  position: "sticky",
+  top: "10px",
+  zIndex: 10000,
+  padding: 0
 });
 
 export const header = style({
   margin: 0,
-  fontSize: "1rem"
+  fontSize: "1rem",
+  backgroundColor: "rgb(0, 0, 0)",
+  display: "inline-block",
+  padding: "0.5em",
+  borderRadius: "5px"
+});
+
+export const headerLink = style({
+  color: "rgb(255, 255, 255)"
 });

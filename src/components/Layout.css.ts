@@ -9,7 +9,7 @@ globalStyle("html", {
 
 globalStyle("html, body", {
   margin: 0,
-  backgroundColor: "rgb(200, 200, 200)",
+  backgroundColor: "rgb(255, 255, 255)",
   fontSize: "16px"
 });
 

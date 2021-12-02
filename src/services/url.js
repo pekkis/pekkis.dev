@@ -1,7 +1,7 @@
-import { DateTime } from "luxon"
+import { DateTime } from "luxon";
 
-export const blogPostUrl = post => {
-  const date = DateTime.fromISO(post.date).setZone("Europe/Helsinki")
+export const blogPostUrl = (post) => {
+  const date = DateTime.fromISO(post.date).setZone("Europe/Helsinki");
 
-  return `/${date.toFormat("yyyy-LL-dd")}/${post.slug}`
-}
+  return `/blogi/${date.toFormat("yyyy/LL/dd")}/${post.slug}`;
+};

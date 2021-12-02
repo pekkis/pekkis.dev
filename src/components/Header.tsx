@@ -1,16 +1,16 @@
 import { Link } from "gatsby";
 import * as React from "react";
-import { base, header } from "./Header.css";
+import { base, header, headerLink } from "./Header.css";
 
-type Props = {
-  title: string;
-};
+type Props = {};
 
-const Header: React.FC<Props> = ({ title }) => {
+const Header: React.FC<Props> = () => {
   return (
     <header className={base}>
       <h1 className={header}>
-        <Link to="/">Pekkis.EU (WIP!)</Link>
+        <Link className={headerLink} to="/">
+          pekkis.eu
+        </Link>
       </h1>
     </header>
   );
