@@ -17,7 +17,8 @@ export const header = style({
   backgroundColor: "rgb(0, 0, 0)",
   display: "inline-block",
   padding: "0.5em",
-  borderRadius: "5px"
+  borderRadius: "5px",
+  marginLeft: "1em"
 });
 
 export const headerLink = style({

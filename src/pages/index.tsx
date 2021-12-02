@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Link, graphql } from "gatsby";
-
+import { graphql } from "gatsby";
 import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { blogPostUrl } from "../services/url";
+import Padder from "../components/Padder";
 import BlogPosts from "../components/BlogPosts";
 
 const IndexPage = ({ data, location }) => {
@@ -14,8 +13,10 @@ const IndexPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
-      <Bio />
-      <BlogPosts posts={posts} />
+      <Padder>
+        <Bio />
+        <BlogPosts posts={posts} />
+      </Padder>
     </Layout>
   );
 };

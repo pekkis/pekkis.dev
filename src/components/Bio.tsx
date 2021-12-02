@@ -8,7 +8,7 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { baseClass, flex2Class } from "./Bio.css";
+import { baseClass, flex2Class, imgClass } from "./Bio.css";
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -34,13 +34,11 @@ const Bio = () => {
   return (
     <div className={baseClass}>
       <div>
-        <StaticImage
-          layout="fixed"
-          formats={["auto", "webp", "avif"]}
+        <img
+          className={imgClass}
           src="https://www.gravatar.com/avatar/9cf0233ff15b51f29e5608cd4a1b905d?s=256"
           width={50}
           height={50}
-          quality={95}
           alt="Profile picture"
         />
       </div>

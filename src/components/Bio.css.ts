@@ -21,4 +21,6 @@ export const dateClass = style({
   margin: 0
 });
 
-export const mainImageClass = style({});
+export const imgClass = style({
+  borderRadius: "100%"
+});

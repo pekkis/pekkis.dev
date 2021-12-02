@@ -8,6 +8,7 @@ import BlogContent from "../components/BlogContent";
 import { blogPostUrl } from "../services/url";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import BlogHeader from "../components/BlogHeader";
+import Padder from "../components/Padder";
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.contentfulBlogPost;
@@ -28,35 +29,32 @@ const BlogPostTemplate = ({ data, location }) => {
         <BlogContent post={post} />
 
         <footer>
-          <Bio />
+          <Padder>
+            <Bio />
+          </Padder>
         </footer>
       </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={blogPostUrl(previous)} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-          <li>
+      <Padder>
+        <nav className="blog-post-nav">
+          <ul>
+            <li>
+              {previous && (
+                <Link to={blogPostUrl(previous)} rel="prev">
+                  ← {previous.title}
+                </Link>
+              )}
+            </li>
+
             {next && (
-              <Link to={blogPostUrl(next)} rel="next">
-                {next.title} →
-              </Link>
+              <li>
+                <Link to={blogPostUrl(next)} rel="next">
+                  {next.title} →
+                </Link>
+              </li>
             )}
-          </li>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </Padder>
     </Layout>
   );
 };
