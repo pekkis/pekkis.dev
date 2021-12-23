@@ -2,6 +2,18 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const { blogPostUrl } = require("./src/services/url");
 
+/*
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type ContentfulAssetContentfulImageReferenceUnion implements Node {
+      contentful_id: String!
+    }
+  `;
+  createTypes(typeDefs);
+};
+*/
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 

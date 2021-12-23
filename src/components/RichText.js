@@ -1,31 +1,41 @@
 import React from "react";
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import BlogInlinePicture from "./BlogInlinePicture";
 
-const Bold = ({ children }) => <span className="bold">{children}</span>;
-const Text = ({ children }) => <p className="align-center">{children}</p>;
+const website_url = "https://www.pekkis.dev";
+
+const isExternalUrl = (url) => !url.startsWith("https://www.pekkis.dev");
+
+const Bold = ({ children }) => <strong>{children}</strong>;
+const Italic = ({ children }) => <em>{children}</em>;
+const Text = ({ children }) => <p>{children}</p>;
 
 const options = {
   renderMark: {
-    [MARKS.BOLD]: (text) => <Bold>{text}</Bold>
+    [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
+    [MARKS.ITALIC]: (text) => <Italic>{text}</Italic>
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-    [BLOCKS.EMBEDDED_ASSET]: (node, two, three) => {
-      console.log(node, two, three, "NOUD");
+    [INLINES.HYPERLINK]: ({ data }, children) => {
+      const isExternal = isExternalUrl(data.uri);
 
+      return (
+        <a
+          href={data.uri}
+          target={`${!isExternal ? "_self" : "_blank"}`}
+          rel={isExternal && "noopener noreferrer"}
+        >
+          {children}
+        </a>
+      );
+    },
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
       if (node.data.target.gatsbyImageData) {
-        return (
-          <>
-            <GatsbyImage
-              alt={node.data.target.title}
-              image={getImage(node.data.target)}
-            />
-            {node.data.target.description}
-          </>
-        );
+        return <BlogInlinePicture node={node} />;
       }
 
       return (
