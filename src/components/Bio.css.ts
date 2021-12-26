@@ -8,7 +8,8 @@ export const baseClass = style({
 });
 
 export const flex2Class = style({
-  paddingLeft: "1em"
+  paddingLeft: "1em",
+  alignSelf: "center"
 });
 
 export const headerClass = style({

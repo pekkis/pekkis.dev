@@ -7,7 +7,6 @@
 
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
 import { baseClass, flex2Class, imgClass } from "./Bio.css";
 
 const Bio = () => {
@@ -46,10 +45,6 @@ const Bio = () => {
         {author?.name && (
           <>
             <strong>{author.name}</strong>. {author?.summary || null}
-            {` `}
-            <a href={`https://twitter.com/${social?.twitter || ``}`}>
-              Stalkkaa twitterissä.
-            </a>
           </>
         )}
       </div>
