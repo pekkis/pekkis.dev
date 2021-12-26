@@ -4,10 +4,17 @@ import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import BlogInlinePicture from "./BlogInlinePicture";
+import { Link } from "gatsby";
 
 const website_url = "https://www.pekkis.dev";
 
-const isExternalUrl = (url) => !url.startsWith("https://www.pekkis.dev");
+const isExternalUrl = (url) => {
+  if (!url.startsWith("http")) {
+    return false;
+  }
+
+  return !url.startsWith("https://www.pekkis.eu");
+};
 
 const Bold = ({ children }) => <strong>{children}</strong>;
 const Italic = ({ children }) => <em>{children}</em>;
@@ -22,12 +29,12 @@ const options = {
     [INLINES.HYPERLINK]: ({ data }, children) => {
       const isExternal = isExternalUrl(data.uri);
 
+      if (!isExternal) {
+        return <Link to={data.uri}>{children}</Link>;
+      }
+
       return (
-        <a
-          href={data.uri}
-          target={`${!isExternal ? "_self" : "_blank"}`}
-          rel={isExternal && "noopener noreferrer"}
-        >
+        <a href={data.uri} target="_blank" rel="noopener noreferrer">
           {children}
         </a>
       );
@@ -51,14 +58,7 @@ const options = {
 };
 
 const RichText = (props) => {
-  console.log("PROPPO", props);
-
-  console.log(JSON.parse(props.richText.raw), "hihi");
-
   const tussi = renderRichText(props.richText, options);
-
-  console.log(tussi);
-
   return <div>{tussi}</div>;
 };
 

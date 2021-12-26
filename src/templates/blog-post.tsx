@@ -15,7 +15,7 @@ const BlogPostTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const { previous, next } = data;
 
-  console.log("POST CONTENNT", post.content);
+  console.log("POST CONTENNT", post.content, next, previous);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -37,13 +37,13 @@ const BlogPostTemplate = ({ data, location }) => {
       <Padder>
         <nav className="blog-post-nav">
           <ul>
-            <li>
-              {previous && (
+            {previous && (
+              <li>
                 <Link to={blogPostUrl(previous)} rel="prev">
                   ← {previous.title}
                 </Link>
-              )}
-            </li>
+              </li>
+            )}
 
             {next && (
               <li>
