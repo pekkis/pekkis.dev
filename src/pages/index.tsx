@@ -15,6 +15,9 @@ const IndexPage = ({ data, location }) => {
       <Seo title="All posts" />
       <Padder>
         <Bio />
+
+        <h2>Heippa!</h2>
+
         <BlogPosts posts={posts} />
       </Padder>
     </Layout>

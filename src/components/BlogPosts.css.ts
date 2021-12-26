@@ -1,5 +1,4 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "../theme.css";
 
 export const baseClass = style({
   margin: 0
@@ -16,7 +15,6 @@ export const postClass = style({
 });
 
 export const headerClass = style({
-  fontSize: "1.5rem",
   margin: 0
 });
 

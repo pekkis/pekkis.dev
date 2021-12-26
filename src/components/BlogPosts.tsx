@@ -32,11 +32,11 @@ const BlogPosts: FC<Props> = ({ posts }) => {
               itemType="http://schema.org/Article"
             >
               <header>
-                <h2 className={headerClass}>
+                <h3 className={headerClass}>
                   <Link to={blogPostUrl(post)} itemProp="url">
                     <span itemProp="headline">{post.title}</span>
                   </Link>
-                </h2>
+                </h3>
                 <time
                   className={dateClass}
                   dateTime={date.toFormat("yyyy-LL-dd")}
