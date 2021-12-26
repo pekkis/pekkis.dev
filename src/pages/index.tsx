@@ -20,6 +20,10 @@ const linkzors = [
     url: "https://twitter.com/pekkisx"
   },
   {
+    title: "Pekkiksen ankara React-valmennus",
+    url: "https://pekkis.github.io/hardcore-react-training/"
+  },
+  {
     title: "Diktaattoripörssi",
     url: "https://www.diktaattoriporssi.com/"
   },
@@ -46,7 +50,7 @@ const IndexPage = ({ data, location }) => {
         <h2>Helei ja tervetuloa!</h2>
 
         <p>
-          Heipparallaa! Minä olen Pekkis, koodari ammatiltani, ja tämä on
+          Heipparallaa! Minä olen Pekkis, ohjelmoitsija ammatiltani, ja tämä on
           kotskaporttaalini.
         </p>
 
