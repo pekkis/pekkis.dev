@@ -15,7 +15,24 @@
     "sourceMap": true,
     "noEmit": true,
     "isolatedModules": true,
-    "allowJs": true
+    "allowJs": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "incremental": true,
+    "moduleResolution": "node"
   }
   // "include": ["src/**/*", "/webpack.config.ts"]
+  ,
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

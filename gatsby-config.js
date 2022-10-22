@@ -18,6 +18,7 @@ module.exports = {
     }
   },
   plugins: [
+    /*
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -28,6 +29,7 @@ module.exports = {
         defer: false
       }
     },
+    */
 
     {
       resolve: "gatsby-plugin-web-font-loader",
