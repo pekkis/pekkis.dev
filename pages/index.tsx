@@ -6,8 +6,11 @@ import Layout from "../components/Layout";
 import Padder from "../components/Padder";
 import { graphQLClient } from "../services/graphql";
 import { HeadlineType } from "../types";
-import { gql } from "graphql-request";
 import { headlinesQuery } from "../queries/HeadlinesQuery";
+import Head from "next/head";
+import { siteMetadata } from "../services/meta";
+import MainHeading from "../components/MainHeading";
+import SubHeading from "../components/SubHeading";
 
 const linkzors = [
   {
@@ -83,84 +86,61 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 const IndexPage: FC<Props> = ({ headlines }) => {
-  // const siteTitle = data.site.siteMetadata?.title || `Title`;
-  // const posts = data.allContentfulBlogPost.nodes;
-
-  const siteTitle = "Pekkis.eu";
-
   return (
-    <Layout>
-      <Padder>
-        <Bio />
+    <>
+      <Head>
+        <title>{siteMetadata.title}</title>
+      </Head>
+      <Layout>
+        <Padder>
+          <Bio />
 
-        <h2>Helei ja tervetuloa!</h2>
+          <MainHeading>Helei ja tervetuloa!</MainHeading>
 
-        <p>
-          Heipparallaa! Minä olen Pekkis, ohjelmoitsija ammatiltani, ja tämä on
-          kotskaporttaalini.
-        </p>
+          <p>
+            Heipparallaa! Minä olen Pekkis, ohjelmoitsija ammatiltani, ja tämä
+            on kotskaporttaalini.
+          </p>
 
-        <p>
-          Ensi hätään kasasin tänne alunperin entisen yritykseni{" "}
-          <a
-            href="https://www.fraktio.fi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Fraktion
-          </a>{" "}
-          blogissa julkaistut postaukset. Näihin oman brändini alla
-          julkaisemiini versioihin kannattaa suhtautua kaanonina, ikään kuin
-          remasteroituina ohjaajan versiona.
-        </p>
+          <p>
+            Osa kirjoituksista on alunperin julkaistu entisen pajani{" "}
+            <a
+              href="https://www.fraktio.fi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Fraktion
+            </a>{" "}
+            blogissa. Oman brändini alla julkaisemiini versioihin kannattaa
+            vastedes suhtautua kaanonina, ikään kuin remasteroituina ohjaajan
+            versioina.
+          </p>
 
-        <h2>Pekkis-linkkejä</h2>
+          <SubHeading>Pekkis-linkkejä</SubHeading>
 
-        <ul>
-          {linkzors.map((linkzor, i) => {
-            return (
-              <li key={i}>
-                <a href={linkzor.url} target="_blank" rel="noopener noreferrer">
-                  {linkzor.title}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+          <ul>
+            {linkzors.map((linkzor, i) => {
+              return (
+                <li key={i}>
+                  <a
+                    href={linkzor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {linkzor.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        <h2>Blogautukset</h2>
+          <h2>Blogautukset</h2>
 
-        <BlogPosts posts={headlines} />
-      </Padder>
-    </Layout>
+          <BlogPosts posts={headlines} />
+        </Padder>
+      </Layout>
+    </>
   );
 };
 
 export default IndexPage;
-
-/*
-export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allContentfulBlogPost(
-      filter: { node_locale: { eq: "fi" } }
-      sort: { order: DESC, fields: [date] }
-    ) {
-      nodes {
-        id
-        date
-        slug
-        title
-        ingress {
-          ingress
-        }
-        node_locale
-      }
-    }
-  }
-`;
-*/

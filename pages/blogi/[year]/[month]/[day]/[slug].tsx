@@ -1,5 +1,7 @@
 import { gql } from "graphql-request";
+import { DateTime } from "luxon";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { FC } from "react";
 import Bio from "../../../../../components/Bio";
@@ -9,6 +11,7 @@ import Layout from "../../../../../components/Layout";
 import Padder from "../../../../../components/Padder";
 import { headlinesQuery } from "../../../../../queries/HeadlinesQuery";
 import { graphQLClient } from "../../../../../services/graphql";
+import { siteMetadata } from "../../../../../services/meta";
 import { blogPostUrl } from "../../../../../services/url";
 import { BlogPostType, HeadlineType } from "../../../../../types";
 
@@ -26,8 +29,6 @@ type Params = {
 };
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (ctx) => {
-  console.log("CTX", ctx);
-
   const headlines = await graphQLClient.request<{
     blogPostCollection: {
       items: HeadlineType[];
@@ -97,6 +98,26 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (ctx) => {
     };
   }
 
+  const post = ret.blogPostCollection.items[0];
+
+  const date = DateTime.fromISO(post.date)
+    .setLocale("fi")
+    .setZone("Europe/Helsinki");
+
+  const year = date.toFormat("yyyy");
+  const month = date.toFormat("LL");
+  const day = date.toFormat("dd");
+
+  if (
+    year !== ctx.params?.year! ||
+    month !== ctx.params?.month! ||
+    day !== ctx.params?.day!
+  ) {
+    return {
+      notFound: true
+    };
+  }
+
   const currentIndex = headlines.blogPostCollection.items.findIndex(
     (h) => h.slug === ctx.params?.slug!
   );
@@ -106,7 +127,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (ctx) => {
 
   return {
     props: {
-      post: ret.blogPostCollection.items[0],
+      post,
       next,
       previous
     }
@@ -141,50 +162,50 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 };
 
 const BlogPostPage: FC<Props> = ({ post, previous, next }) => {
-  console.log({
-    post,
-    previous,
-    next
-  });
-
   return (
-    <Layout>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <BlogHeader post={post} />
-        <BlogContent post={post} />
+    <>
+      <Head>
+        <title>{`${post.title} - ${siteMetadata.title}`}</title>
+      </Head>
 
-        <footer>
-          <Padder>
-            <Bio />
-          </Padder>
-        </footer>
-      </article>
-      <Padder>
-        <nav className="blog-post-nav">
-          <ul>
-            {previous && (
-              <li>
-                <Link href={blogPostUrl(previous)} rel="prev">
-                  <a>← {previous.title}</a>
-                </Link>
-              </li>
-            )}
+      <Layout>
+        <article
+          className="blog-post"
+          itemScope
+          itemType="http://schema.org/Article"
+        >
+          <BlogHeader post={post} />
+          <BlogContent post={post} />
 
-            {next && (
-              <li>
-                <Link href={blogPostUrl(next)} rel="next">
-                  <a>{next.title} →</a>
-                </Link>
-              </li>
-            )}
-          </ul>
-        </nav>
-      </Padder>
-    </Layout>
+          <footer>
+            <Padder>
+              <Bio />
+            </Padder>
+          </footer>
+        </article>
+        <Padder>
+          <nav className="blog-post-nav">
+            <ul>
+              {previous && (
+                <li>
+                  <Link href={blogPostUrl(previous)} rel="prev">
+                    <a>← {previous.title}</a>
+                  </Link>
+                </li>
+              )}
+
+              {next && (
+                <li>
+                  <Link href={blogPostUrl(next)} rel="next">
+                    <a>{next.title} →</a>
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </nav>
+        </Padder>
+      </Layout>
+    </>
   );
 };
 

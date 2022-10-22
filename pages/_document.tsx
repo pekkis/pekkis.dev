@@ -19,13 +19,14 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#de0000" />
   <meta name="theme-color" content="#de0000" />*/}
 
-        {/*<script
+        <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-  />*/}
-        {/*<script
-          dangerouslySetInnerHTML={{
-            __html: `
+        />
+        {
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -33,8 +34,9 @@ export default function Document() {
           page_path: window.location.pathname,
         });
       `
-          }}
-        />*/}
+            }}
+          />
+        }
       </Head>
       <body>
         <Main />

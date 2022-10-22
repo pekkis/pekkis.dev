@@ -54,7 +54,7 @@ typings/
 # dotenv environment variable files
 .env*
 
-./next
+.next/
 
 
 # Mac files

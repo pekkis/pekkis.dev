@@ -1,5 +1,5 @@
 import { baseClass, flex2Class, imgClass } from "./Bio.css";
-import meta from "../services/meta";
+import { siteMetadata } from "../services/meta";
 
 const Bio = () => {
   return (
@@ -14,9 +14,10 @@ const Bio = () => {
         />
       </div>
       <div className={flex2Class}>
-        {meta.author.name && (
+        {siteMetadata.author.name && (
           <>
-            <strong>{meta.author.name}</strong>. {meta.author.summary || null}
+            <strong>{siteMetadata.author.name}</strong>.{" "}
+            {siteMetadata.author.summary || null}
           </>
         )}
       </div>

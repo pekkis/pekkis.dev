@@ -23,7 +23,7 @@ const BlogHeader: FC<Props> = ({ post }) => {
     <header className={rootClass}>
       {post.mainImage && (
         <ContentfulImage
-          alt="hilirimpsis"
+          alt={post.mainImage.image.title}
           config={{
             width: 1024,
             aspectRatio: 16 / 9,

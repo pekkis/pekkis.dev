@@ -1,16 +1,16 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "../theme.css";
+import { vars } from "../services/theme.css";
 
 export const rootClass = style({
   margin: 0
 });
 
 export const headerContentClass = style({
-  padding: "1em"
+  padding: vars.spaces.small
 });
 
 export const headerClass = style({
-  fontSize: "2rem",
+  fontSize: vars.fontSizes.large,
   margin: 0
 });
 

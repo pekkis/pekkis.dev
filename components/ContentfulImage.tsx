@@ -1,6 +1,7 @@
 import { FC } from "react";
 // import NextImage from "next/image";
 import { ContentfulImageData } from "../types";
+import { containerClass, imageClass } from "./ContentfulImage.css";
 
 type ContentfulConfig = {
   width?: number;
@@ -56,8 +57,14 @@ const ContentfulImage: FC<Props> = ({
   const imageUrl = `${data.url}?${urlParams.toString()}`;
 
   return (
-    <picture>
-      <img loading={loading} src={imageUrl} title={data.title} alt={alt} />
+    <picture className={containerClass}>
+      <img
+        className={imageClass}
+        loading={loading}
+        src={imageUrl}
+        title={data.title}
+        alt={alt}
+      />
     </picture>
   );
 };

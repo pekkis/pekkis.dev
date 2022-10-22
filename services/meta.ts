@@ -1,4 +1,4 @@
-const siteMetadata = {
+export const siteMetadata = {
   title: `Pekkis.eu`,
   author: {
     name: `Mikko "Pekkis" Forsström`,
@@ -10,5 +10,3 @@ const siteMetadata = {
     twitter: `pekkisx`
   }
 };
-
-export default siteMetadata;

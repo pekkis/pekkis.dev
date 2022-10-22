@@ -1,9 +1,9 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "../theme.css";
+import { vars } from "../services/theme.css";
 
 export const base = style({
   marginTop: 0,
-  marginBottom: "2em",
+  marginBottom: vars.spaces.medium,
   backgroundColor: "transparent",
   position: "sticky",
   top: "10px",

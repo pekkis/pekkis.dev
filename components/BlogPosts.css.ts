@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../services/theme.css";
 
 export const baseClass = style({
   margin: 0
@@ -11,7 +12,10 @@ export const listClass = style({
 });
 
 export const postClass = style({
-  margin: "2em 0"
+  borderCollapse: "collapse",
+  borderBottom: `1px solid ${vars.color.grey}`,
+  marginTop: vars.spaces.small,
+  marginBottom: vars.spaces.small
 });
 
 export const headerClass = style({

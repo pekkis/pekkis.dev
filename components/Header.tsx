@@ -6,11 +6,11 @@ type Props = {};
 const Header: React.FC<Props> = () => {
   return (
     <header className={base}>
-      <h1 className={header}>
+      <nav className={header}>
         <Link href="/">
           <a className={headerLink}>pekkis.eu</a>
         </Link>
-      </h1>
+      </nav>
     </header>
   );
 };
