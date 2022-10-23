@@ -1,26 +1,32 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../services/theme.css";
 
-export const base = style({
+export const baseClass = style({
   marginTop: 0,
   marginBottom: vars.spaces.medium,
-  backgroundColor: "transparent",
+  backgroundColor: vars.color.black,
   position: "sticky",
-  top: "10px",
+  top: 0,
   zIndex: 10000,
-  padding: 0
+  padding: 0,
+  boxShadow: `0px 1px 1px ${vars.color.black}`,
+  color: vars.color.white
 });
 
-export const header = style({
+export const headerClass = style({
   margin: 0,
   fontSize: "1rem",
-  backgroundColor: "rgb(0, 0, 0)",
+  // backgroundColor: "rgb(0, 0, 0)",
   display: "inline-block",
   padding: "0.5em",
   borderRadius: "5px",
   marginLeft: "1em"
 });
 
-export const headerLink = style({
+export const headerLinkClass = style({
   color: "rgb(255, 255, 255)"
+});
+
+export const activeLinkClass = style({
+  fontWeight: "bold"
 });

@@ -19,7 +19,8 @@ export const vars = createGlobalTheme(":root", {
   color: {
     brand: "blue",
     white: "white",
-    grey: "rgb(220 220 220)"
+    grey: "rgb(220 220 220)",
+    black: "rgb(0 0 0)"
   },
   font: {
     body: "Merriweather"

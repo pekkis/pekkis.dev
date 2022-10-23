@@ -1,14 +1,40 @@
 import Link from "next/link";
-import { base, header, headerLink } from "./Header.css";
+import { useRouter } from "next/router";
+import { FC } from "react";
+import {
+  baseClass,
+  headerClass,
+  headerLinkClass,
+  activeLinkClass
+} from "./Header.css";
+import cx from "clsx";
 
 type Props = {};
 
-const Header: React.FC<Props> = () => {
+const Header: FC<Props> = () => {
+  const router = useRouter();
+
   return (
-    <header className={base}>
-      <nav className={header}>
+    <header className={baseClass}>
+      <nav className={headerClass}>
         <Link href="/">
-          <a className={headerLink}>pekkis.eu</a>
+          <a
+            className={cx(headerLinkClass, {
+              [activeLinkClass]: router.pathname === "/"
+            })}
+          >
+            pekkis.eu
+          </a>
+        </Link>{" "}
+        |{" "}
+        <Link href="/blogi">
+          <a
+            className={cx(headerLinkClass, {
+              [activeLinkClass]: router.pathname.startsWith("/blogi")
+            })}
+          >
+            blogi
+          </a>
         </Link>
       </nav>
     </header>

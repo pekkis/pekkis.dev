@@ -5,36 +5,12 @@ import BlogPosts from "../components/BlogPosts";
 import Layout from "../components/Layout";
 import Padder from "../components/Padder";
 import { graphQLClient } from "../services/graphql";
-import { HeadlineType, VideoType } from "../types";
+import { HeadlineType } from "../types";
 import { headlinesQuery } from "../queries/HeadlinesQuery";
 import Head from "next/head";
 import { siteMetadata } from "../services/meta";
 import MainHeading from "../components/MainHeading";
 import SubHeading from "../components/SubHeading";
-import Preachings from "../components/Preachings";
-
-const preachings: VideoType[] = [
-  {
-    videoId: "Imjqd9JiG_M",
-    title: "Virkamiessaarna 5: fronttidevauksen kristallikallo 2222"
-  },
-  {
-    videoId: "0Kl7NIE0Eb8",
-    title: "Vuorisaarna 4.0: tekno-evankeliumi 3019"
-  },
-  {
-    videoId: "QKE8Eusvp0I",
-    title: "40-vuotisjuhlavuorisaarna"
-  },
-  {
-    videoId: "OguXQ0zDOko",
-    title: "Vuorisaarna II: Toinen tuleminen"
-  },
-  {
-    videoId: "Mk5sAUc0EB8",
-    title: "React-vuorisaarna"
-  }
-];
 
 const linkzors = [
   {
@@ -80,7 +56,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       items: HeadlineType[];
     };
   }>(headlinesQuery, {
-    limit: 5
+    limit: 50
   });
 
   return {
@@ -115,44 +91,34 @@ const IndexPage: FC<Props> = ({ headlines }) => {
   return (
     <>
       <Head>
-        <title>{siteMetadata.title}</title>
+        <title>{`Blogi - ${siteMetadata.title}`}</title>
       </Head>
       <Layout>
         <Padder>
           <Bio />
 
-          <MainHeading>Helei ja tervetuloa!</MainHeading>
+          <MainHeading>Blogi</MainHeading>
 
           <p>
-            Heipparallaa! Minä olen Pekkis, ohjelmoitsija ammatiltani, ja tämä
-            on kotskaporttaalini.
+            Tässäpä kaikki blogautukseni vuosien varrelta. Kuten lukija helposti
+            huomaa, kirjoitustahtini on hidas mutta epävarma.
           </p>
 
-          <SubHeading>Pekkis-linkit</SubHeading>
-
-          <ul>
-            {linkzors.map((linkzor, i) => {
-              return (
-                <li key={i}>
-                  <a
-                    href={linkzor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {linkzor.title}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-
-          <SubHeading>Pekkis kirjoittaa</SubHeading>
+          <p>
+            Osa kirjoituksista on alunperin julkaistu entisen pajani{" "}
+            <a
+              href="https://www.fraktio.fi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Fraktion
+            </a>{" "}
+            blogissa. Näihin oman brändini alla julkaisemiini versioihin
+            kannattaa vastedes suhtautua kaanonina, ikään kuin remasteroituina
+            ohjaajan versioina.
+          </p>
 
           <BlogPosts posts={headlines} />
-
-          <SubHeading>Pekkis saarnaa</SubHeading>
-
-          <Preachings videos={preachings} />
         </Padder>
       </Layout>
     </>
