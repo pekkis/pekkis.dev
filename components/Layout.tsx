@@ -10,9 +10,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <CookieConsent />
+      <Header />
       <Container>
         <div className={root}>
-          <Header />
           <main>{children}</main>
           <Footer />
         </div>
