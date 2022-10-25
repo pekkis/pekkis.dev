@@ -1,12 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "pekkis.eu",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
+  "description": "pekkis.eu",
+  "version": "2.0.0",
+  "author": "Mikko Forsström aka Pekkis <pekkisx@gmail.com>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@contentful/rich-text-types": "^15.7.0",
@@ -36,11 +33,13 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://www.pekkis.eu",
   "keywords": [
-    "gatsby"
+    "nextjs",
+    "himapage",
+    "portal"
   ],
-  "license": "0BSD",
+  "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
