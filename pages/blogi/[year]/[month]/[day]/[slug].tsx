@@ -130,7 +130,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (ctx) => {
       post,
       next,
       previous
-    }
+    },
+    revalidate: 60
   };
 };
 
