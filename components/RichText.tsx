@@ -60,7 +60,7 @@ const createOptions = (post: BlogPostType): Options => {
 
         if (!isExternal) {
           return (
-            <Link href={data.uri}>
+            <Link legacyBehavior href={data.uri}>
               <a>{children}</a>
             </Link>
           );

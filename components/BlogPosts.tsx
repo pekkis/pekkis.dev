@@ -33,7 +33,7 @@ const BlogPosts: FC<Props> = ({ posts }) => {
             >
               <header>
                 <h3 className={headerClass}>
-                  <Link href={blogPostUrl(post)} itemProp="url">
+                  <Link legacyBehavior href={blogPostUrl(post)} itemProp="url">
                     <a>
                       <span itemProp="headline">{post.title}</span>
                     </a>

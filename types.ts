@@ -22,6 +22,7 @@ export type HeadlineType = {
   title: string;
   slug: string;
   ingress: string;
+  visible: boolean;
 };
 
 export type AssetType = {};

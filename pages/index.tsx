@@ -148,7 +148,11 @@ const IndexPage: FC<Props> = ({ headlines }) => {
 
           <SubHeading>Pekkis kirjoittaa</SubHeading>
 
-          <BlogPosts posts={headlines} />
+          <BlogPosts
+            posts={headlines.filter(
+              (h) => h.visible || process.env.NEXT_PUBLIC_SHOW_INVISIBLE
+            )}
+          />
 
           <SubHeading>Pekkis saarnaa</SubHeading>
 

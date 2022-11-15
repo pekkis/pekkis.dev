@@ -8,6 +8,7 @@ export const headlinesQuery = gql`
         sys {
           id
         }
+        visible
         date
         title
         slug

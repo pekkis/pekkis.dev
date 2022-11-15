@@ -118,7 +118,7 @@ const IndexPage: FC<Props> = ({ headlines }) => {
             ohjaajan versioina.
           </p>
 
-          <BlogPosts posts={headlines} />
+          <BlogPosts posts={headlines.filter((h) => h.visible)} />
         </Padder>
       </Layout>
     </>

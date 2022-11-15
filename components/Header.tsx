@@ -17,7 +17,7 @@ const Header: FC<Props> = () => {
   return (
     <header className={baseClass}>
       <nav className={headerClass}>
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a
             className={cx(headerLinkClass, {
               [activeLinkClass]: router.pathname === "/"
@@ -27,7 +27,7 @@ const Header: FC<Props> = () => {
           </a>
         </Link>{" "}
         |{" "}
-        <Link href="/blogi">
+        <Link legacyBehavior href="/blogi">
           <a
             className={cx(headerLinkClass, {
               [activeLinkClass]: router.pathname.startsWith("/blogi")

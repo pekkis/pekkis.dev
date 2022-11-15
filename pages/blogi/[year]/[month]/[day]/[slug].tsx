@@ -188,7 +188,7 @@ const BlogPostPage: FC<Props> = ({ post, previous, next }) => {
             <ul>
               {previous && (
                 <li>
-                  <Link href={blogPostUrl(previous)} rel="prev">
+                  <Link legacyBehavior href={blogPostUrl(previous)} rel="prev">
                     <a>← {previous.title}</a>
                   </Link>
                 </li>
@@ -196,7 +196,7 @@ const BlogPostPage: FC<Props> = ({ post, previous, next }) => {
 
               {next && (
                 <li>
-                  <Link href={blogPostUrl(next)} rel="next">
+                  <Link legacyBehavior href={blogPostUrl(next)} rel="next">
                     <a>{next.title} →</a>
                   </Link>
                 </li>
