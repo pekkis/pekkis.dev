@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       items: HeadlineType[];
     };
   }>(headlinesQuery, {
-    limit: 10
+    limit: 6
   });
 
   return {
