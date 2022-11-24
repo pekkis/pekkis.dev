@@ -62,7 +62,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       headlines: ret.blogPostCollection.items
-    }
+    },
+    revalidate: 60 * 10
   };
 
   /*
