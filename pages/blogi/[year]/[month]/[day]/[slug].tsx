@@ -167,8 +167,8 @@ const BlogPostPage: FC<Props> = ({ post, previous, next }) => {
     <>
       <Head>
         <title>{`${post.title} - ${siteMetadata.title}`}</title>
+        <meta name="og:image" content={`${post.mainImage.image.url}?w=1024`} />
       </Head>
-
       <Layout>
         <article
           className="blog-post"
