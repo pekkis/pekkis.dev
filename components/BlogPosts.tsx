@@ -1,16 +1,10 @@
 import Link from "next/link";
 
-import { FC } from "react";
-import { HeadlineType, PostType } from "../types";
-import { blogPostUrl } from "../services/url";
-import {
-  baseClass,
-  listClass,
-  postClass,
-  headerClass,
-  dateClass
-} from "./BlogPosts.css";
 import { DateTime } from "luxon";
+import { FC } from "react";
+import { blogPostUrl } from "../services/url";
+import { HeadlineType } from "../types";
+import { dateClass, headerClass, listClass, postClass } from "./BlogPosts.css";
 
 type Props = {
   posts: HeadlineType[];

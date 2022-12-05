@@ -12,6 +12,7 @@ export default function Document() {
           href="/favicon-32x32.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
         {/*<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
