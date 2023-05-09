@@ -15,23 +15,28 @@ export const revalidate = 60 * 10;
 const preachings: VideoType[] = [
   {
     videoId: "Imjqd9JiG_M",
-    title: "Virkamiessaarna 5: fronttidevauksen kristallikallo 2222"
+    title: "Virkamiessaarna 5: fronttidevauksen kristallikallo 2222",
+    nsfw: false
   },
   {
     videoId: "0Kl7NIE0Eb8",
-    title: "Vuorisaarna 4.0: tekno-evankeliumi 3019"
+    title: "Vuorisaarna 4.0: tekno-evankeliumi 3019",
+    nsfw: false
   },
   {
     videoId: "QKE8Eusvp0I",
-    title: "40-vuotisjuhlavuorisaarna"
+    title: "40-vuotisjuhlavuorisaarna",
+    nsfw: false
   },
   {
     videoId: "OguXQ0zDOko",
-    title: "Vuorisaarna II: Toinen tuleminen"
+    title: "Vuorisaarna II: Toinen tuleminen",
+    nsfw: false
   },
   {
     videoId: "Mk5sAUc0EB8",
-    title: "React-vuorisaarna"
+    title: "React-vuorisaarna",
+    nsfw: false
   }
 ];
 

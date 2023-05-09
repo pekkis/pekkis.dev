@@ -56,4 +56,5 @@ export type VideoType = {
   videoId: string;
   title: string;
   description?: string;
+  nsfw: boolean;
 };

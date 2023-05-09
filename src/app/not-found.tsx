@@ -1,8 +1,10 @@
+import { notFoundClass } from "./not-found.css";
+
 export default function NotFound() {
   return (
-    <>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-    </>
+    <div className={notFoundClass}>
+      <h2>404</h2>
+      <p>Voi ei, sivua ei löytynnä!</p>
+    </div>
   );
 }

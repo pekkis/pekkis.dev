@@ -1,6 +1,16 @@
+"use client";
+
 import { FC } from "react";
-import ReactPlayer from "react-player";
+
 import { containerClass, innerClass } from "./VideoPlayer.css";
+import dynamic from "next/dynamic";
+
+const ReactPlayer = dynamic(() => import("react-player"), {
+  ssr: false,
+  loading: () => {
+    return <div>laddare...</div>;
+  }
+});
 
 type Props = {
   videoId: string;

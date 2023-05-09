@@ -69,7 +69,6 @@ export async function GET() {
 
   const entries: SitemapEntry[] = [...staticPageEntries, ...postEntries];
 
-  // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(entries);
 
   return new NextResponse(sitemap, {
@@ -77,8 +76,4 @@ export async function GET() {
       "Content-Type": "text/xml"
     }
   });
-
-  return NextResponse.json;
-
-  // return NextResponse.json({ data });
 }
