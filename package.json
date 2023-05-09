@@ -21,6 +21,7 @@
     "react-cookie-consent": "^8.0.1",
     "react-dom": "18.3.0-canary-16d053d59-20230506",
     "react-icons": "^4.8.0",
+    "react-intersection-observer": "^9.4.3",
     "react-player": "^2.12.0"
   },
   "devDependencies": {
