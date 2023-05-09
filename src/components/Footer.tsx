@@ -1,13 +1,13 @@
+import { FC } from "react";
 import { baseClass } from "./Footer.css";
 import Padder from "./Padder";
 
-type Props = {};
-
-const Footer: React.FC<Props> = () => {
+const Footer: FC = () => {
   return (
     <footer className={baseClass}>
       <Padder>
-        Copyright &copy; {new Date().getFullYear()} Mikko "Pekkis" Forsström.
+        Copyright &copy; {new Date().getFullYear()} Mikko &quot;Pekkis&quot;
+        Forsström.
       </Padder>
     </footer>
   );

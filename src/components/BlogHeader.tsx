@@ -2,11 +2,10 @@ import { DateTime } from "luxon";
 import { FC } from "react";
 import { BlogPostType } from "../types";
 import {
-  rootClass,
-  headerContentClass,
+  dateClass,
   headerClass,
-  mainImageClass,
-  dateClass
+  headerContentClass,
+  rootClass
 } from "./BlogHeader.css";
 import ContentfulImage from "./ContentfulImage";
 

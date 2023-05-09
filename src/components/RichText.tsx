@@ -4,8 +4,6 @@ import {
   BLOCKS,
   MARKS,
   INLINES,
-  HEADINGS,
-  AssetLinkBlock,
   Block,
   Inline
 } from "@contentful/rich-text-types";
@@ -20,9 +18,9 @@ import { BlogPostType } from "../types";
 import MainHeading from "./MainHeading";
 import SubHeading from "./SubHeading";
 
-const website_url = "https://www.pekkis.eu";
+// const website_url = "https://www.pekkis.eu";
 
-const isExternalUrl = (url) => {
+const isExternalUrl = (url: string) => {
   if (!url.startsWith("http")) {
     return false;
   }
@@ -59,11 +57,7 @@ const createOptions = (post: BlogPostType): Options => {
         const isExternal = isExternalUrl(data.uri);
 
         if (!isExternal) {
-          return (
-            <Link legacyBehavior href={data.uri}>
-              <a>{children}</a>
-            </Link>
-          );
+          return <Link href={data.uri}>{children}</Link>;
         }
 
         return (

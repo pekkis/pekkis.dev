@@ -25,7 +25,7 @@ export type HeadlineType = {
   visible: boolean;
 };
 
-export type AssetType = {};
+export type AssetType = Record<string, string>;
 
 export type BlogPostType = HeadlineType & {
   mainImage: {

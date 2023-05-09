@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { cache } from "react";
@@ -110,10 +110,7 @@ export const getPost = cache(async (slug: string) => {
   };
 });
 
-export async function generateMetadata(
-  { params }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getPost(params.slug);
 
   return {
@@ -160,16 +157,16 @@ export default async function BlogPostPage({ params }: Props) {
           <ul>
             {previous && (
               <li>
-                <Link legacyBehavior href={blogPostUrl(previous)} rel="prev">
-                  <a>← {previous.title}</a>
+                <Link href={blogPostUrl(previous)} rel="prev">
+                  ← {previous.title}
                 </Link>
               </li>
             )}
 
             {next && (
               <li>
-                <Link legacyBehavior href={blogPostUrl(next)} rel="next">
-                  <a>{next.title} →</a>
+                <Link href={blogPostUrl(next)} rel="next">
+                  {next.title} →
                 </Link>
               </li>
             )}

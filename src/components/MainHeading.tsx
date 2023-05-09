@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode } from "react";
+import { ComponentProps, FC } from "react";
 import { headingClass } from "./MainHeading.css";
 
 const MainHeading: FC<ComponentProps<"h1">> = ({ children, ...rest }) => {

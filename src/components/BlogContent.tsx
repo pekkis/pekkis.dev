@@ -1,6 +1,6 @@
-import { FC, ReactNode } from "react";
-import { BlogPostType, PostType } from "../types";
-import { rootClass, ingressClass } from "./BlogContent.css";
+import { FC } from "react";
+import { BlogPostType } from "../types";
+import { ingressClass, rootClass } from "./BlogContent.css";
 import RichText from "./RichText";
 
 type Props = {

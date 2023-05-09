@@ -3,9 +3,7 @@
 import React, { FC } from "react";
 import ReactCookieConsent from "react-cookie-consent";
 
-type Props = {};
-
-const CookieConsent: FC<Props> = () => {
+const CookieConsent: FC = () => {
   return (
     <ReactCookieConsent
       location="bottom"
