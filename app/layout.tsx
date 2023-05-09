@@ -1,3 +1,5 @@
+import PageTracker from "./PageTracker";
+
 export default function RootLayout({
   children
 }: {
@@ -32,7 +34,10 @@ export default function RootLayout({
         />
       </head>
 
-      <body>{children}</body>
+      <body>
+        <PageTracker />
+        {children}
+      </body>
     </html>
   );
 }

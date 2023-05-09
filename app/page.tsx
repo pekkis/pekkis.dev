@@ -9,7 +9,6 @@ import { siteMetadata } from "../services/meta";
 import MainHeading from "../components/MainHeading";
 import SubHeading from "../components/SubHeading";
 import Preachings from "../components/Preachings";
-import PageTracker from "./PageTracker";
 
 export const revalidate = 60 * 10;
 
@@ -83,7 +82,6 @@ export default async function IndexPage() {
 
   return (
     <>
-      <PageTracker />
       <Layout>
         <Padder>
           <Bio />
