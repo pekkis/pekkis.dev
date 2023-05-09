@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { FC } from "react";
 import {
   baseClass,
@@ -8,11 +9,12 @@ import {
   activeLinkClass
 } from "./Header.css";
 import cx from "clsx";
+import { usePathname } from "next/navigation";
 
 type Props = {};
 
 const Header: FC<Props> = () => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <header className={baseClass}>
@@ -20,7 +22,7 @@ const Header: FC<Props> = () => {
         <Link legacyBehavior href="/">
           <a
             className={cx(headerLinkClass, {
-              [activeLinkClass]: router.pathname === "/"
+              [activeLinkClass]: pathname === "/"
             })}
           >
             pekkis.eu
@@ -30,7 +32,7 @@ const Header: FC<Props> = () => {
         <Link legacyBehavior href="/blogi">
           <a
             className={cx(headerLinkClass, {
-              [activeLinkClass]: router.pathname.startsWith("/blogi")
+              [activeLinkClass]: pathname?.startsWith("/blogi")
             })}
           >
             blogi

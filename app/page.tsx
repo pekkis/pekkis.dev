@@ -1,5 +1,3 @@
-import { GetStaticProps } from "next";
-import { FC } from "react";
 import Bio from "../components/Bio";
 import BlogPosts from "../components/BlogPosts";
 import Layout from "../components/Layout";
@@ -7,11 +5,11 @@ import Padder from "../components/Padder";
 import { graphQLClient } from "../services/graphql";
 import { HeadlineType, VideoType } from "../types";
 import { headlinesQuery } from "../queries/HeadlinesQuery";
-import Head from "next/head";
 import { siteMetadata } from "../services/meta";
 import MainHeading from "../components/MainHeading";
 import SubHeading from "../components/SubHeading";
 import Preachings from "../components/Preachings";
+import PageTracker from "./PageTracker";
 
 const preachings: VideoType[] = [
   {
@@ -67,14 +65,12 @@ const linkzors = [
   }
 ];
 
-type Props = {
-  headlines: HeadlineType[];
+export const metadata = {
+  title: siteMetadata.title
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  // const articulados = await parsedArticles;
-
-  const ret = await graphQLClient.request<{
+export default async function IndexPage() {
+  const headlines = await graphQLClient.request<{
     blogPostCollection: {
       total: number;
       items: HeadlineType[];
@@ -83,41 +79,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     limit: 6
   });
 
-  return {
-    props: {
-      headlines: ret.blogPostCollection.items
-    },
-    revalidate: 60 * 10
-  };
-
-  /*
-  return {
-    props: {
-      latest: take(50, articulados).map((a) => {
-        return {
-          id: a.id,
-          dateLastModified: a.dateContentModified,
-          datePublished: a.datePublished,
-          headline: {
-            full: a.headline.full,
-            image: {
-              id: a.headline.image?.id || null,
-              alt: a.headline.image?.alt || null
-            }
-          }
-        };
-      })
-    }
-  };
-  */
-};
-
-const IndexPage: FC<Props> = ({ headlines }) => {
   return (
     <>
-      <Head>
-        <title>{siteMetadata.title}</title>
-      </Head>
+      <PageTracker />
       <Layout>
         <Padder>
           <Bio />
@@ -150,7 +114,7 @@ const IndexPage: FC<Props> = ({ headlines }) => {
           <SubHeading>Pekkis kirjoittaa</SubHeading>
 
           <BlogPosts
-            posts={headlines.filter(
+            posts={headlines.blogPostCollection.items.filter(
               (h) => h.visible || process.env.NEXT_PUBLIC_SHOW_INVISIBLE
             )}
           />
@@ -162,6 +126,4 @@ const IndexPage: FC<Props> = ({ headlines }) => {
       </Layout>
     </>
   );
-};
-
-export default IndexPage;
+}

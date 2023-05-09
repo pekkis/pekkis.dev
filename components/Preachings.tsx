@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect } from "react";
 import VideoPlayer from "./VideoPlayer";
 import { nth } from "ramda";

@@ -23,14 +23,20 @@
     ],
     "skipLibCheck": true,
     "incremental": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   }
   // "include": ["src/**/*", "/webpack.config.ts"]
   ,
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
