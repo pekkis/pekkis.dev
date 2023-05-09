@@ -1,7 +1,9 @@
+import { NextResponse } from "next/server";
+
 import { gql } from "graphql-request";
-import { graphQLClient } from "../services/graphql";
-import { blogPostUrl } from "../services/url";
-import { BlogPostType } from "../types";
+import { graphQLClient } from "../../services/graphql";
+import { blogPostUrl } from "../../services/url";
+import { BlogPostType } from "../../types";
 
 type SitemapEntry = {
   loc: string;
@@ -34,11 +36,7 @@ function generateSiteMap(entries: SitemapEntry[]) {
  `;
 }
 
-function SiteMap() {
-  // getServerSideProps will do the heavy lifting
-}
-
-export async function getServerSideProps({ res }) {
+export async function GET() {
   const query = gql`
     query SitemapStuff {
       blogPostCollection(limit: 150, where: { visible: true }) {
@@ -50,7 +48,11 @@ export async function getServerSideProps({ res }) {
     }
   `;
 
-  const ret = await graphQLClient.request(query);
+  const ret = await graphQLClient.request<{
+    blogPostCollection: {
+      items: BlogPostType[];
+    };
+  }>(query);
   const posts: BlogPostType[] = ret.blogPostCollection.items;
 
   const postEntries = posts.map((p) => {
@@ -70,14 +72,13 @@ export async function getServerSideProps({ res }) {
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(entries);
 
-  res.setHeader("Content-Type", "text/xml");
-  // we send the XML to the browser
-  res.write(sitemap);
-  res.end();
+  return new NextResponse(sitemap, {
+    headers: {
+      "Content-Type": "text/xml"
+    }
+  });
 
-  return {
-    props: {}
-  };
+  return NextResponse.json;
+
+  // return NextResponse.json({ data });
 }
-
-export default SiteMap;
