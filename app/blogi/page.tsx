@@ -12,6 +12,8 @@ export const metadata = {
   title: `Blogi - ${siteMetadata.title}`
 };
 
+export const revalidate = 60 * 10;
+
 export default async function BlogPage() {
   const ret = await graphQLClient.request<{
     blogPostCollection: {

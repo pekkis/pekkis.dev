@@ -11,6 +11,8 @@ import SubHeading from "../components/SubHeading";
 import Preachings from "../components/Preachings";
 import PageTracker from "./PageTracker";
 
+export const revalidate = 60 * 10;
+
 const preachings: VideoType[] = [
   {
     videoId: "Imjqd9JiG_M",

@@ -24,6 +24,8 @@ type Props = {
   };
 };
 
+export const revalidate = 60 * 10;
+
 export const getPost = cache(async (slug: string) => {
   const headlines = await graphQLClient.request<{
     blogPostCollection: {
@@ -107,11 +109,6 @@ export const getPost = cache(async (slug: string) => {
     previous
   };
 });
-
-/*
-        <title>{`${post.title} - ${siteMetadata.title}`}</title>
-        <meta name="og:image" content={`${post.mainImage.image.url}?w=1024`} />
-*/
 
 export async function generateMetadata(
   { params }: Props,
