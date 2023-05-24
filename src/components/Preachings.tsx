@@ -62,7 +62,7 @@ const Preachings: FC<Props> = ({ videos }) => {
         </div>
         <div className={titleClass}>
           {video.title}
-          {video.nsfw === false && <span>[NSFW]</span>}
+          {video.nsfw && <span>[NSFW]</span>}
         </div>
         <div className={browserClass}>
           <FaChevronCircleRight
