@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+
+    "declaration": true,
+    "declarationMap": true,
+
     "esModuleInterop": true,
     "jsx": "preserve",
     "target": "esnext",
-    "module": "commonjs",
+    "module": "ES2022",
     "strict": true,
     "noImplicitAny": false,
     "noUnusedLocals": true,
@@ -13,20 +18,15 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "noEmit": true,
+    "noEmit": false,
     "isolatedModules": true,
     "allowJs": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "incremental": true,
-    "moduleResolution": "node",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "moduleResolution": "node"
   },
   // "include": ["src/**/*", "/webpack.config.ts"]
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

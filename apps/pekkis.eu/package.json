@@ -8,6 +8,7 @@
     "@contentful/rich-text-react-renderer": "^15.16.4",
     "@contentful/rich-text-types": "^16.1.0",
     "@next/bundle-analyzer": "^13.4.1",
+    "@pekkis-dev/graphql-service": "workspace:*",
     "@vanilla-extract/css": "^1.11.0",
     "clsx": "^1.2.1",
     "encoding": "^0.1.13",

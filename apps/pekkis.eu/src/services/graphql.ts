@@ -1,10 +1,8 @@
-import { GraphQLClient } from "graphql-request";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-export const endpoint =
-  "https://graphql.contentful.com/content/v1/spaces/81es2xqvgkvu";
+import { createClient } from "@pekkis-dev/graphql-service";
 
-export const graphQLClient = new GraphQLClient(endpoint, {
-  headers: {
-    authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`
-  }
-});
+export const graphQLClient = createClient(
+  process.env.CONTENTFUL_SPACE_ID!,
+  process.env.CONTENTFUL_ACCESS_TOKEN!
+);

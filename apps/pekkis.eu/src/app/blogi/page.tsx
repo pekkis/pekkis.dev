@@ -6,6 +6,7 @@ import Padder from "../../components/Padder";
 import { headlinesQuery } from "../../queries/HeadlinesQuery";
 import { graphQLClient } from "../../services/graphql";
 import { siteMetadata } from "../../services/meta";
+
 import { HeadlineType } from "../../types";
 
 export const metadata = {
