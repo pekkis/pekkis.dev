@@ -1,75 +1,16 @@
-import Bio from "../components/Bio";
-import BlogPosts from "../components/BlogPosts";
-import Layout from "../components/Layout";
-import Padder from "../components/Padder";
-import { graphQLClient } from "../services/graphql";
-import { HeadlineType, VideoType } from "../types";
-import { headlinesQuery } from "../queries/HeadlinesQuery";
-import { siteMetadata } from "../services/meta";
-import MainHeading from "../components/MainHeading";
-import SubHeading from "../components/SubHeading";
-import Preachings from "../components/Preachings";
+import Bio from "@/components/Bio";
+import BlogPosts from "@/components/BlogPosts";
+import Layout from "@/components/Layout";
+import Padder from "@/components/Padder";
+import { graphQLClient, headlinesQuery } from "@/services/graphql";
+import { HeadlineType } from "@/types";
+import { siteMetadata } from "@/services/meta";
+import MainHeading from "@/components/MainHeading";
+import SubHeading from "@/components/SubHeading";
+import Preachings from "@/components/Preachings";
+import { getLinkzors, getPreachings } from "@/services/pexu";
 
 export const revalidate = 60 * 10;
-
-const preachings: VideoType[] = [
-  {
-    videoId: "Imjqd9JiG_M",
-    title: "Virkamiessaarna 5: fronttidevauksen kristallikallo 2222",
-    nsfw: false
-  },
-  {
-    videoId: "0Kl7NIE0Eb8",
-    title: "Vuorisaarna 4.0: tekno-evankeliumi 3019",
-    nsfw: false
-  },
-  {
-    videoId: "QKE8Eusvp0I",
-    title: "40-vuotisjuhlavuorisaarna",
-    nsfw: false
-  },
-  {
-    videoId: "OguXQ0zDOko",
-    title: "Vuorisaarna II: Toinen tuleminen",
-    nsfw: false
-  },
-  {
-    videoId: "Mk5sAUc0EB8",
-    title: "React-vuorisaarna",
-    nsfw: false
-  }
-];
-
-const linkzors = [
-  {
-    title: "Pekkis LinkedInissä",
-    url: "https://www.linkedin.com/in/pekkis/"
-  },
-  {
-    title: "Pekkis Githubissa",
-    url: "https://github.com/pekkis/"
-  },
-  {
-    title: "Pekkis Twitterissä",
-    url: "https://twitter.com/pekkisx"
-  },
-  {
-    title: "Pekkiksen ankara React-valmennus",
-    url: "https://pekkis.github.io/hardcore-react-training/"
-  },
-  {
-    title: "Diktaattoripörssi",
-    url: "https://www.diktaattoriporssi.com/"
-  },
-  {
-    title: "MHM Online",
-    url: "https://www.mhm-online.org/"
-  },
-  {
-    title: "Dr. Kobros Foundation",
-    url: "https://www.dr-kobros.com/"
-  }
-];
 
 export const metadata = {
   title: siteMetadata.title
@@ -84,6 +25,10 @@ export default async function IndexPage() {
   }>(headlinesQuery, {
     limit: 6
   });
+
+  const linkzors = await getLinkzors();
+
+  const preachings = await getPreachings();
 
   return (
     <>

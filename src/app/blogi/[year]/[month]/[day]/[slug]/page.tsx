@@ -1,19 +1,16 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { cache } from "react";
-import { graphQLClient } from "../../../../../../services/graphql";
-import { BlogPostType, HeadlineType } from "../../../../../../types";
-import { headlinesQuery } from "../../../../../../queries/HeadlinesQuery";
-import { gql } from "graphql-request";
 import { DateTime } from "luxon";
-import Layout from "../../../../../../components/Layout";
-import BlogHeader from "../../../../../../components/BlogHeader";
-import BlogContent from "../../../../../../components/BlogContent";
-import Padder from "../../../../../../components/Padder";
-import Bio from "../../../../../../components/Bio";
-import { blogPostUrl } from "../../../../../../services/url";
 import Link from "next/link";
+import { cache } from "react";
+import Bio from "@/components/Bio";
+import BlogContent from "@/components/BlogContent";
+import BlogHeader from "@/components/BlogHeader";
+import Layout from "@/components/Layout";
+import Padder from "@/components/Padder";
+import { getBlogPosts, getHeadlines } from "@/services/blog";
+import { blogPostUrl } from "@/services/url";
 
 type Props = {
   params: {
@@ -27,68 +24,8 @@ type Props = {
 export const revalidate = 60 * 10;
 
 export const getPost = cache(async (slug: string) => {
-  const headlines = await graphQLClient.request<{
-    blogPostCollection: {
-      items: HeadlineType[];
-    };
-  }>(headlinesQuery);
-
-  const query = gql`
-    query BlogPostArticle($slug: String!) {
-      blogPostCollection(limit: 1, where: { slug: $slug }) {
-        items {
-          sys {
-            id
-          }
-          title
-          ingress
-          date
-          content {
-            links {
-              assets {
-                __typename
-                block {
-                  sys {
-                    id
-                  }
-                  __typename
-                  width
-                  height
-                  url
-                  title
-                  description
-                  sys {
-                    id
-                  }
-                }
-              }
-            }
-
-            json
-          }
-          mainImage {
-            sys {
-              id
-            }
-            image {
-              title
-              url
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const ret = await graphQLClient.request<{
-    blogPostCollection: {
-      items: BlogPostType[];
-    };
-  }>(query, {
-    slug
-  });
+  const headlines = await getHeadlines();
+  const ret = await getBlogPosts(slug);
 
   if (ret.blogPostCollection.items.length !== 1) {
     notFound();

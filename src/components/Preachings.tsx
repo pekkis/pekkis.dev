@@ -5,7 +5,7 @@ import VideoPlayer from "./VideoPlayer";
 import { nth } from "ramda";
 import { FC, useState } from "react";
 import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
-import { VideoType } from "../types";
+import { VideoType } from "@/types";
 import {
   baseClass,
   browserClass,

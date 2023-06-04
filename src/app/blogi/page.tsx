@@ -1,13 +1,10 @@
-import Bio from "../../components/Bio";
-import BlogPosts from "../../components/BlogPosts";
-import Layout from "../../components/Layout";
-import MainHeading from "../../components/MainHeading";
-import Padder from "../../components/Padder";
-import { headlinesQuery } from "../../queries/HeadlinesQuery";
-import { graphQLClient } from "../../services/graphql";
-import { siteMetadata } from "../../services/meta";
-
-import { HeadlineType } from "../../types";
+import Bio from "@/components/Bio";
+import BlogPosts from "@/components/BlogPosts";
+import Layout from "@/components/Layout";
+import MainHeading from "@/components/MainHeading";
+import Padder from "@/components/Padder";
+import { getHeadlines } from "@/services/blog";
+import { siteMetadata } from "@/services/meta";
 
 export const metadata = {
   title: `Blogi - ${siteMetadata.title}`
@@ -16,14 +13,7 @@ export const metadata = {
 export const revalidate = 60 * 10;
 
 export default async function BlogPage() {
-  const ret = await graphQLClient.request<{
-    blogPostCollection: {
-      total: number;
-      items: HeadlineType[];
-    };
-  }>(headlinesQuery, {
-    limit: 50
-  });
+  const ret = await getHeadlines(50);
 
   return (
     <Layout>

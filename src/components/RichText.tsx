@@ -14,7 +14,7 @@ import {
 
 import BlogInlinePicture from "./BlogInlinePicture";
 import Link from "next/link";
-import { BlogPostType } from "../types";
+import { BlogPostType } from "@/types";
 import MainHeading from "./MainHeading";
 import SubHeading from "./SubHeading";
 

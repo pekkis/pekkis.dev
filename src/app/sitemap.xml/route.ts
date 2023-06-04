@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-
-import { gql } from "graphql-request";
-import { graphQLClient } from "../../services/graphql";
-import { blogPostUrl } from "../../services/url";
-import { BlogPostType } from "../../types";
+import { blogPostUrl } from "@/services/url";
+import { BlogPostType } from "@/types";
+import { getSitemap } from "@/services/sitemap";
 
 type SitemapEntry = {
   loc: string;
@@ -37,22 +35,7 @@ function generateSiteMap(entries: SitemapEntry[]) {
 }
 
 export async function GET() {
-  const query = gql`
-    query SitemapStuff {
-      blogPostCollection(limit: 150, where: { visible: true }) {
-        items {
-          date
-          slug
-        }
-      }
-    }
-  `;
-
-  const ret = await graphQLClient.request<{
-    blogPostCollection: {
-      items: BlogPostType[];
-    };
-  }>(query);
+  const ret = await getSitemap();
   const posts: BlogPostType[] = ret.blogPostCollection.items;
 
   const postEntries = posts.map((p) => {

@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { FC } from "react";
-import { BlogPostType } from "../types";
+import { BlogPostType } from "@/types";
 import {
   dateClass,
   headerClass,

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ContentfulImageData } from "../types";
+import { ContentfulImageData } from "@/types";
 import { rootClass, descClass } from "./BlogInlinePicture.css";
 import ContentfulImage from "./ContentfulImage";
 

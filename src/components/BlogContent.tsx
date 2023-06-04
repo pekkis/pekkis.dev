@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BlogPostType } from "../types";
+import { BlogPostType } from "@/types";
 import { ingressClass, rootClass } from "./BlogContent.css";
 import RichText from "./RichText";
 

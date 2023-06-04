@@ -1,6 +1,6 @@
 import { FC } from "react";
 // import NextImage from "next/image";
-import { ContentfulImageData } from "../types";
+import { ContentfulImageData } from "@/types";
 import { containerClass, imageClass } from "./ContentfulImage.css";
 
 type ContentfulConfig = {
