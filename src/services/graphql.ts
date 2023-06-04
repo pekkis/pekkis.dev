@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { GraphQLClient } from "graphql-request";
 
 export const createClient = (spaceId: string, accessToken: string) => {
@@ -5,9 +7,14 @@ export const createClient = (spaceId: string, accessToken: string) => {
 
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
+      authorization: `Bearer ${accessToken}`
+    }
   });
 
   return graphQLClient;
 };
+
+export const graphQLClient = createClient(
+  process.env.CONTENTFUL_SPACE_ID!,
+  process.env.CONTENTFUL_ACCESS_TOKEN!
+);
