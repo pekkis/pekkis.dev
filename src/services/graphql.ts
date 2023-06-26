@@ -20,8 +20,9 @@ export const graphQLClient = createClient(
 );
 
 export const headlinesQuery = gql`
-  query Headlines($limit: Int! = 10) {
+  query Headlines($limit: Int! = 10, $preview: Boolean! = false) {
     blogPostCollection(
+      preview: $preview
       order: [date_DESC]
       limit: $limit
       where: { visible: true }
@@ -42,9 +43,14 @@ export const headlinesQuery = gql`
 `;
 
 export const blogPostQuery = gql`
-  query BlogPostArticle($slug: String!) {
-    blogPostCollection(limit: 1, where: { slug: $slug }) {
+  query BlogPostArticle($slug: String!, $preview: Boolean! = false) {
+    blogPostCollection(preview: $preview, limit: 1, where: { slug: $slug }) {
       items {
+        contentfulMetadata {
+          tags {
+            name
+          }
+        }
         sys {
           id
         }

@@ -13,7 +13,7 @@ export const metadata = {
 export const revalidate = 60 * 10;
 
 export default async function BlogPage() {
-  const ret = await getHeadlines(50);
+  const ret = await getHeadlines(50, process.env.CONTENTFUL_PREVIEW === "true");
 
   return (
     <Layout>

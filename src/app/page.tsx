@@ -9,6 +9,7 @@ import MainHeading from "@/components/MainHeading";
 import SubHeading from "@/components/SubHeading";
 import Preachings from "@/components/Preachings";
 import { getLinkzors, getPreachings } from "@/services/pexu";
+import { getHeadlines } from "@/services/blog";
 
 export const revalidate = 60 * 10;
 
@@ -17,14 +18,10 @@ export const metadata = {
 };
 
 export default async function IndexPage() {
-  const headlines = await graphQLClient.request<{
-    blogPostCollection: {
-      total: number;
-      items: HeadlineType[];
-    };
-  }>(headlinesQuery, {
-    limit: 6
-  });
+  const headlines = await getHeadlines(
+    6,
+    process.env.CONTENTFUL_PREVIEW === "true"
+  );
 
   const linkzors = await getLinkzors();
 

@@ -28,6 +28,11 @@ export type HeadlineType = {
 export type AssetType = Record<string, string>;
 
 export type BlogPostType = HeadlineType & {
+  contentfulMetadata: {
+    tags: {
+      name: string;
+    }[];
+  };
   mainImage: {
     image: ContentfulImageData;
   };

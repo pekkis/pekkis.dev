@@ -11,6 +11,7 @@ import Layout from "@/components/Layout";
 import Padder from "@/components/Padder";
 import { getBlogPosts, getHeadlines } from "@/services/blog";
 import { blogPostUrl } from "@/services/url";
+import DidNotAgeWellWarning from "@/components/DidNotAgeWellWarning";
 
 type Props = {
   params: {
@@ -24,8 +25,14 @@ type Props = {
 export const revalidate = 60 * 10;
 
 export const getPost = cache(async (slug: string) => {
-  const headlines = await getHeadlines();
-  const ret = await getBlogPosts(slug);
+  const headlines = await getHeadlines(
+    100,
+    process.env.CONTENTFUL_PREVIEW === "true"
+  );
+  const ret = await getBlogPosts(
+    slug,
+    process.env.CONTENTFUL_PREVIEW === "true"
+  );
 
   if (ret.blogPostCollection.items.length !== 1) {
     notFound();
@@ -73,6 +80,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const tags = post.contentfulMetadata.tags.map((t) => t.name);
   return (
     <Layout>
       <article
@@ -80,6 +88,8 @@ export default async function BlogPostPage({ params }: Props) {
         itemScope
         itemType="http://schema.org/Article"
       >
+        {tags.includes("did-not-age-well") && <DidNotAgeWellWarning />}
+
         <BlogHeader post={post} />
         <BlogContent post={post} />
 
