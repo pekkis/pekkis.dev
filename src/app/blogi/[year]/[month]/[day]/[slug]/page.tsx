@@ -14,17 +14,17 @@ import { blogPostUrl } from "@/services/url";
 import DidNotAgeWellWarning from "@/components/DidNotAgeWellWarning";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
     year: string;
     month: string;
     day: string;
-  };
+  }>;
 };
 
-export const revalidate = 60 * 10;
+export const revalidate = 600;
 
-export const getPost = cache(async (slug: string) => {
+const getPost = cache(async (slug: string) => {
   const headlines = await getHeadlines(
     100,
     process.env.CONTENTFUL_PREVIEW === "true"
@@ -55,7 +55,9 @@ export const getPost = cache(async (slug: string) => {
 });
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getPost(params.slug);
+  const { slug } = await params;
+
+  const data = await getPost(slug);
 
   return {
     title: data.post.title,
@@ -66,17 +68,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { post, next, previous } = await getPost(params.slug);
+  const { slug, year, month, day } = await params;
+  const { post, next, previous } = await getPost(slug);
 
   const date = DateTime.fromISO(post.date)
     .setLocale("fi")
     .setZone("Europe/Helsinki");
 
-  const year = date.toFormat("yyyy");
-  const month = date.toFormat("LL");
-  const day = date.toFormat("dd");
+  const yearX = date.toFormat("yyyy");
+  const monthX = date.toFormat("LL");
+  const dayX = date.toFormat("dd");
 
-  if (year !== params.year || month !== params.month || day !== params.day) {
+  if (year !== yearX || month !== monthX || day !== dayX) {
     notFound();
   }
 

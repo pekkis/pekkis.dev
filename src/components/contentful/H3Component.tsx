@@ -2,11 +2,12 @@ import type { Heading3 } from "@contentful/rich-text-types";
 import NodeList from "./NodeList";
 import type { RendererMap } from "./RichTextDocument";
 import { FC } from "react";
+import { Context } from "@/components/RichText";
 
 type Props = {
   node: Heading3;
   renderers: RendererMap;
-  context: unknown;
+  context: Context;
 };
 
 const H3Component: FC<Props> = ({ node, renderers, context }) => {

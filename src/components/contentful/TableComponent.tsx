@@ -2,11 +2,12 @@ import type { Table } from "@contentful/rich-text-types";
 import NodeList from "./NodeList";
 import type { RendererMap } from "./RichTextDocument";
 import { FC } from "react";
+import { Context } from "@/components/RichText";
 
 type Props = {
   node: Table;
   renderers: RendererMap;
-  context: unknown;
+  context: Context;
 };
 
 const TableComponent: FC<Props> = ({ node, renderers, context }) => {

@@ -2,11 +2,12 @@ import type { MARKS } from "@contentful/rich-text-types";
 import { type Text } from "@contentful/rich-text-types";
 import type { RendererMap } from "./RichTextDocument";
 import { FC, ReactNode } from "react";
+import { Context } from "@/components/RichText";
 
 type Props = {
   node: Text;
   renderers: RendererMap;
-  context: unknown;
+  context: Context;
 };
 
 const TextComponent: FC<Props> = ({ node, renderers }) => {

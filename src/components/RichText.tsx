@@ -32,7 +32,7 @@ type MarkComponentProps = {
   children: ReactNode;
 };
 
-type Context = {
+export type Context = {
   assets: {
     [k: string]: ContentfulImageData;
   };

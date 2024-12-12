@@ -5,8 +5,13 @@ import { root } from "./Layout.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
+import { FC, ReactNode } from "react";
 
-const Layout = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <CookieConsent />

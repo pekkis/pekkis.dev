@@ -9,7 +9,7 @@ import Preachings from "@/components/Preachings";
 import { getLinkzors, getPreachings } from "@/services/pexu";
 import { getHeadlines } from "@/services/blog";
 
-export const revalidate = 60 * 10;
+export const revalidate = 600;
 
 export const metadata = {
   title: siteMetadata.title

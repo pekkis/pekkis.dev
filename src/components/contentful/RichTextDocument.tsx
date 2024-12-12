@@ -28,12 +28,13 @@ import SuperscriptMark from "@/components/contentful/mark/SuperscriptMark";
 import UnderlineMark from "@/components/contentful/mark/UnderlineMark";
 import { FC, ReactNode } from "react";
 import StrikethroughMark from "@/components/contentful/mark/StrikethroughMark";
+import { Context } from "@/components/RichText";
 
 export type NodeRendererComponent = FC<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   node: any;
   renderers: RendererMap;
-  context: unknown;
+  context: Context;
 }>;
 
 export type BlockRenderers = Record<
@@ -130,7 +131,7 @@ const RichTextDocument: FC<Props> = ({
             node={node}
             key={i}
             renderers={renderers}
-            context={context}
+            context={context as Context}
           />
         );
       })}
