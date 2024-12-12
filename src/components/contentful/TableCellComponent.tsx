@@ -6,7 +6,7 @@ import { FC } from "react";
 type Props = {
   node: TableCell;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const TableCellComponent: FC<Props> = ({ node, renderers, context }) => {

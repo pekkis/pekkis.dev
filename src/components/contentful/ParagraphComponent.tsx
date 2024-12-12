@@ -6,7 +6,7 @@ import { FC } from "react";
 type Props = {
   node: Paragraph;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const Paragraph: FC<Props> = ({ node, renderers, context }) => {

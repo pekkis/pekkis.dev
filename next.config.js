@@ -1,28 +1,25 @@
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
+const withVanillaExtract = createVanillaExtractPlugin();
+import process from "node:process";
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
+import { piped } from "remeda";
+
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
   openAnalyzer: true
 });
 
-const withVanillaExtract = createVanillaExtractPlugin();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  productionBrowserSourceMaps: true,
-  reactStrictMode: false,
+  reactStrictMode: true,
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: false
   },
   eslint: {
-    ignoreDuringBuilds: true
-  },
-  images: {
-    domains: ["images.ctfassets.net"]
-  },
-  experimental: {
-    appDir: true
+    ignoreDuringBuilds: false
   }
 };
 
-module.exports = withBundleAnalyzer(withVanillaExtract(nextConfig));
+export default piped(withBundleAnalyzer, withVanillaExtract)(nextConfig);

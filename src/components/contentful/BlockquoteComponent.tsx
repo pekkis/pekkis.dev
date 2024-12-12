@@ -5,7 +5,7 @@ import { FC } from "react";
 type Props = {
   node: Block;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const BlockQuoteComponent: FC<Props> = ({ node, renderers, context }) => {

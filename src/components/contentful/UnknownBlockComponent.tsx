@@ -2,13 +2,13 @@
 
 import type { Node } from "@contentful/rich-text-types";
 import { RendererMap } from "./RichTextDocument";
-import { FC, useState } from "react";
+import { FC } from "react";
 import Opener from "./Opener";
 
 type Props = {
   node: Node;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const UnknownBlockComponent: FC<Props> = ({ node }) => {

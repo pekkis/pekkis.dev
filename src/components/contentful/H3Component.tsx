@@ -6,7 +6,7 @@ import { FC } from "react";
 type Props = {
   node: Heading3;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const H3Component: FC<Props> = ({ node, renderers, context }) => {

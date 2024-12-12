@@ -5,7 +5,7 @@ import { FC } from "react";
 type Props = {
   node: Node;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const NodeComponent: FC<Props> = ({ node, renderers, context }) => {

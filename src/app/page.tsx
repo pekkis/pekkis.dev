@@ -2,8 +2,6 @@ import Bio from "@/components/Bio";
 import BlogPosts from "@/components/BlogPosts";
 import Layout from "@/components/Layout";
 import Padder from "@/components/Padder";
-import { graphQLClient, headlinesQuery } from "@/services/graphql";
-import { HeadlineType } from "@/types";
 import { siteMetadata } from "@/services/meta";
 import MainHeading from "@/components/MainHeading";
 import SubHeading from "@/components/SubHeading";

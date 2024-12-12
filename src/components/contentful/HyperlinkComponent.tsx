@@ -6,7 +6,7 @@ import { FC } from "react";
 type Props = {
   node: Hyperlink;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const HyperlinkComponent: FC<Props> = ({ node, renderers, context }) => {

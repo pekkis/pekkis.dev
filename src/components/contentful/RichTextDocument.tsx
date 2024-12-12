@@ -1,5 +1,5 @@
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
-import type { Document, Mark } from "@contentful/rich-text-types";
+import type { Document } from "@contentful/rich-text-types";
 import BlockquoteComponent from "@/components/contentful/BlockquoteComponent";
 import H1Component from "@/components/contentful/H1Component";
 import H2Component from "@/components/contentful/H2Component";
@@ -27,20 +27,22 @@ import SubscriptMark from "@/components/contentful/mark/SubscriptMark";
 import SuperscriptMark from "@/components/contentful/mark/SuperscriptMark";
 import UnderlineMark from "@/components/contentful/mark/UnderlineMark";
 import { FC, ReactNode } from "react";
+import StrikethroughMark from "@/components/contentful/mark/StrikethroughMark";
 
 export type NodeRendererComponent = FC<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   node: any;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 }>;
 
 export type BlockRenderers = Record<
   BLOCKS,
-  FC<{ node: any; renderers: RendererMap }>
+  FC<{ node: unknown; renderers: RendererMap }>
 >;
 export type InlineRenderers = Record<
   INLINES,
-  FC<{ node: any; renderers: RendererMap }>
+  FC<{ node: unknown; renderers: RendererMap }>
 >;
 export type MarkRenderers = Record<MARKS, FC<{ children: ReactNode }>>;
 
@@ -66,7 +68,8 @@ export const defaultMarkRenderers: MarkRenderers = {
   [MARKS.CODE]: CodeMark,
   [MARKS.UNDERLINE]: UnderlineMark,
   [MARKS.SUPERSCRIPT]: SuperscriptMark,
-  [MARKS.SUBSCRIPT]: SubscriptMark
+  [MARKS.SUBSCRIPT]: SubscriptMark,
+  [MARKS.STRIKETHROUGH]: StrikethroughMark
 };
 
 export const defaultNodeRenderers: Record<string, NodeRendererComponent> = {

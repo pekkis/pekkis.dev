@@ -6,7 +6,7 @@ import { FC, ReactNode } from "react";
 type Props = {
   node: Text;
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const TextComponent: FC<Props> = ({ node, renderers }) => {

@@ -1,27 +1,22 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 import {
   BLOCKS,
-  MARKS,
-  INLINES,
-  Block,
-  Inline,
-  Node,
+  Heading1,
+  Heading2,
   Hyperlink,
-  Heading1
+  INLINES,
+  MARKS,
+  Node
 } from "@contentful/rich-text-types";
-import {
-  documentToReactComponents,
-  Options
-} from "@contentful/rich-text-react-renderer";
 
-import BlogInlinePicture from "./BlogInlinePicture";
-import Link from "next/link";
 import { BlogPostType, ContentfulImageData } from "@/types";
+import Link from "next/link";
+import BlogInlinePicture from "./BlogInlinePicture";
 import MainHeading from "./MainHeading";
 import SubHeading from "./SubHeading";
-import RichTextDocument, { RendererMap } from "./contentful/RichTextDocument";
 import NodeList from "./contentful/NodeList";
+import RichTextDocument, { RendererMap } from "./contentful/RichTextDocument";
 
 // const website_url = "https://www.pekkis.eu";
 

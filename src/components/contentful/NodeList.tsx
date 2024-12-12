@@ -6,7 +6,7 @@ import { FC } from "react";
 type Props = {
   nodes: Node[];
   renderers: RendererMap;
-  context: any;
+  context: unknown;
 };
 
 const NodeList: FC<Props> = ({ nodes, renderers, context }) => {
