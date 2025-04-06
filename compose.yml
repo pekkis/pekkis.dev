@@ -2,21 +2,10 @@ services:
   next:
     build:
       dockerfile: docker/next/Dockerfile
-    depends_on:
-      - mongo
     networks:
-      - kobros
+      - web
     ports:
       - 3050:3050
-  mongo:
-    image: mongo
-    restart: always
-    volumes:
-      - mongodata:/data/db
-    networks:
-      - kobros
 networks:
-  kobros:
+  web:
     driver: bridge
-volumes:
-  mongodata:
