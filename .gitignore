@@ -67,3 +67,7 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
+
+# Sentry Config File
+.env.sentry-build-plugin
+.vscode/
