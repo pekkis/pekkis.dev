@@ -34,6 +34,7 @@ export default function Page() {
           <a
             target="_blank"
             href="https://glitchtip.pekkis.eu/organizations/dr-kobros/issues/?project=1"
+            rel="noreferrer"
           >
             Issues Page
           </a>
@@ -41,6 +42,7 @@ export default function Page() {
           <a
             target="_blank"
             href="https://docs.sentry.io/platforms/javascript/guides/nextjs/"
+            rel="noreferrer"
           >
             read our docs
           </a>
