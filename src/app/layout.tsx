@@ -19,6 +19,12 @@ export default function RootLayout({
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
         <script
+          defer
+          data-domain="pekkis.eu"
+          src="https://analytics.pekkis.eu/js/script.js"
+        ></script>
+
+        <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
         />
