@@ -1,5 +1,13 @@
 import PageTracker from "./PageTracker";
 
+import { Merriweather } from "next/font/google";
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap"
+});
+
 export default function RootLayout({
   children
 }: {
@@ -8,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/dre0vgf.css" />
         <link
           rel="icon"
           type="image/png"
@@ -40,7 +47,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
+      <body className={merriweather.className}>
         <PageTracker />
         {children}
       </body>
