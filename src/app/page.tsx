@@ -6,8 +6,9 @@ import { siteMetadata } from "@/services/meta";
 import MainHeading from "@/components/MainHeading";
 import SubHeading from "@/components/SubHeading";
 import Preachings from "@/components/Preachings";
-import { getLinkzors, getPreachings } from "@/services/pexu";
+import { getLinkzors } from "@/services/pexu";
 import { getHeadlines } from "@/services/blog";
+import { getPreachings } from "@/services/preachings";
 
 export const revalidate = 600;
 

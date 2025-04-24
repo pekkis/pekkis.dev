@@ -56,10 +56,3 @@ export type ContentfulImageData = {
   height: number;
   description?: string;
 };
-
-export type VideoType = {
-  videoId: string;
-  title: string;
-  description?: string;
-  nsfw: boolean;
-};

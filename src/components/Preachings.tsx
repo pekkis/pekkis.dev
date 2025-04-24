@@ -5,7 +5,6 @@ import VideoPlayer from "./VideoPlayer";
 import { nth } from "ramda";
 import { FC, useState } from "react";
 import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
-import { VideoType } from "@/types";
 import {
   baseClass,
   browserClass,
@@ -13,9 +12,10 @@ import {
   nonClickableClass,
   titleClass
 } from "./Preachings.css";
+import { PreachingType } from "@/services/preachings";
 
 type Props = {
-  videos: VideoType[];
+  videos: PreachingType[];
 };
 
 const Preachings: FC<Props> = ({ videos }) => {
@@ -47,7 +47,7 @@ const Preachings: FC<Props> = ({ videos }) => {
   const hasLess = current > 0;
   return (
     <>
-      <VideoPlayer videoId={video.videoId} />
+      <VideoPlayer videoId={video.videoId} timestamp={video.timestamp} />
       <div className={baseClass}>
         <div className={browserClass}>
           <FaChevronCircleLeft
@@ -60,10 +60,7 @@ const Preachings: FC<Props> = ({ videos }) => {
             className={hasLess ? clickableClass : nonClickableClass}
           />
         </div>
-        <div className={titleClass}>
-          {video.title}
-          {video.nsfw && <span>[NSFW]</span>}
-        </div>
+        <div className={titleClass}>{video.title}</div>
         <div className={browserClass}>
           <FaChevronCircleRight
             onClick={(e) => {

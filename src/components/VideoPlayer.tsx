@@ -4,7 +4,6 @@ import { FC } from "react";
 
 import { containerClass, innerClass } from "./VideoPlayer.css";
 import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   ssr: false,
@@ -15,22 +14,18 @@ const ReactPlayer = dynamic(() => import("react-player"), {
 
 type Props = {
   videoId: string;
+  timestamp?: string;
 };
 
-const VideoPlayer: FC<Props> = ({ videoId }) => {
-  const { ref, inView } = useInView();
+const VideoPlayer: FC<Props> = ({ videoId, timestamp }) => {
+  const videoUrl = !timestamp
+    ? `https://www.youtube.com/watch?v=${videoId}`
+    : `https://www.youtube.com/watch?v=${videoId}&t=${timestamp}`;
 
   return (
     <div className={containerClass}>
-      <div ref={ref} className={innerClass}>
-        {inView && (
-          <ReactPlayer
-            controls
-            width="100%"
-            height="100%"
-            url={`https://www.youtube.com/watch?v=${videoId}`}
-          />
-        )}
+      <div className={innerClass}>
+        <ReactPlayer controls width="100%" height="100%" url={videoUrl} />
       </div>
     </div>
   );
