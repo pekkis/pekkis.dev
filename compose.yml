@@ -5,7 +5,65 @@ services:
     networks:
       - web
     ports:
-      - 3050:3050
+      - 3050:3000
+
+  directus_database:
+    image: postgis/postgis:17-3.5
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "directus"
+      POSTGRES_PASSWORD: "directus"
+      POSTGRES_DB: "directus"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--host=localhost", "--username=directus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
+
+  directus_cache:
+    image: redis:7
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(redis-cli ping) = 'PONG' ]"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
+
+  directus:
+    image: directus/directus:11
+    ports:
+      - 3051:8055
+    depends_on:
+      directus_database:
+        condition: service_healthy
+      directus_cache:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+      - ./templates:/directus/templates
+    environment:
+      DB_CLIENT: "pg"
+      DB_HOST: "directus_database"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "directus"
+      DB_PASSWORD: "directus"
+      ADMIN_EMAIL: "pekkisx@gmail.com"
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+      CACHE_ENABLED: "true"
+      CACHE_AUTO_PURGE: "true"
+      CACHE_STORE: "redis"
+      REDIS: "redis://directus_cache:6379"
+      SECRET: ${DIRECTUS_SECRET}
+      PUBLIC_URL: "https://cms.pekkis.eu"
+
+volumes:
+  pg-data:
+
 networks:
   web:
-    driver: bridge
