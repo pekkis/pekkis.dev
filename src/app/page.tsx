@@ -7,7 +7,7 @@ import MainHeading from "@/components/MainHeading";
 import SubHeading from "@/components/SubHeading";
 import Preachings from "@/components/Preachings";
 import { getLinkzors } from "@/services/pexu";
-import { getHeadlines } from "@/services/blog";
+import { getHeadlines } from "@/services/blogposts";
 import { getPreachings } from "@/services/preachings";
 
 export const revalidate = 600;
@@ -59,11 +59,7 @@ export default async function IndexPage() {
 
           <SubHeading>Pekkis kirjoittaa</SubHeading>
 
-          <BlogPosts
-            posts={headlines.blogPostCollection.items.filter(
-              (h) => h.visible || process.env.NEXT_PUBLIC_SHOW_INVISIBLE
-            )}
-          />
+          <BlogPosts posts={headlines} />
 
           <SubHeading>Pekkis saarnaa</SubHeading>
 

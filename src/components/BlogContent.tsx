@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { BlogPostType } from "@/types";
 import { ingressClass, rootClass } from "./BlogContent.css";
-import RichText from "./RichText";
+import { BlogPostType } from "@/services/blogposts";
+import BlogPostRenderer from "@/components/directus/BlogPostRenderer";
 
 type Props = {
   post: BlogPostType;
@@ -12,7 +12,7 @@ const BlogContent: FC<Props> = ({ post }) => {
     <div className={rootClass}>
       <p className={ingressClass}>{post.ingress}</p>
 
-      <RichText post={post} />
+      <BlogPostRenderer post={post} />
     </div>
   );
 };

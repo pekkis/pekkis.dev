@@ -1,7 +1,6 @@
 import { FC } from "react";
-// import NextImage from "next/image";
-import { ContentfulImageData } from "@/types";
 import { containerClass, imageClass } from "./ContentfulImage.css";
+import imgproxy from "@/services/imgproxy";
 
 type ContentfulConfig = {
   width?: number;
@@ -11,50 +10,58 @@ type ContentfulConfig = {
   quality?: number;
 };
 
-const urlParamsFromConfig = (config: ContentfulConfig): URLSearchParams => {
-  const urlParams = new URLSearchParams();
+const urlParamsFromConfig = (config: ContentfulConfig) => {
+  const builder = imgproxy.builder();
 
   if (config.width) {
-    urlParams.set("w", config.width.toString());
+    builder.width(config.width);
 
     if (config.aspectRatio) {
       const h = Math.round(config.width / config.aspectRatio);
-
-      urlParams.set("h", h.toString());
+      builder.height(h);
     }
   }
 
   if (config.fit) {
-    urlParams.set("fit", config.fit);
+    builder.resizingType(config.fit);
   }
 
+  /*
   if (config.focus) {
+
+
     urlParams.set("f", config.focus);
   }
+  */
 
   if (config.quality) {
-    urlParams.set("q", config.quality.toString());
+    builder.quality(config.quality);
   }
 
-  return urlParams;
+  return builder;
 };
 
 type Props = {
-  data: ContentfulImageData;
-  alt: string;
+  data: {
+    title: string;
+    url: string;
+  };
+  alt?: string;
   config?: ContentfulConfig;
   loading?: "lazy" | "eager";
 };
 
-const ContentfulImage: FC<Props> = ({
+const ImgproxyImage: FC<Props> = ({
   data,
   alt,
   config = {},
   loading = "lazy"
 }) => {
-  const urlParams = urlParamsFromConfig(config);
+  const builder = urlParamsFromConfig(config);
 
-  const imageUrl = `${data.url}?${urlParams.toString()}`;
+  const imageUrl = builder.generateUrl(
+    `${process.env.DIRECTUS_ENDPOINT}${data.url}`
+  );
 
   return (
     <picture className={containerClass}>
@@ -69,4 +76,4 @@ const ContentfulImage: FC<Props> = ({
   );
 };
 
-export default ContentfulImage;
+export default ImgproxyImage;

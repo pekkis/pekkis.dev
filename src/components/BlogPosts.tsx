@@ -3,8 +3,8 @@ import Link from "next/link";
 import { DateTime } from "luxon";
 import { FC } from "react";
 import { blogPostUrl } from "../services/url";
-import { HeadlineType } from "@/types";
 import { dateClass, headerClass, listClass, postClass } from "./BlogPosts.css";
+import { HeadlineType } from "@/services/blogposts";
 
 type Props = {
   posts: HeadlineType[];

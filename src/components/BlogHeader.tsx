@@ -1,13 +1,15 @@
 import { DateTime } from "luxon";
 import { FC } from "react";
-import { BlogPostType } from "@/types";
+
 import {
   dateClass,
   headerClass,
   headerContentClass,
   rootClass
 } from "./BlogHeader.css";
-import ContentfulImage from "./ContentfulImage";
+
+import { BlogPostType } from "@/services/blogposts";
+import ImgproxyImage from "@/components/ImgproxyImage";
 
 type Props = {
   post: BlogPostType;
@@ -21,14 +23,17 @@ const BlogHeader: FC<Props> = ({ post }) => {
   return (
     <header className={rootClass}>
       {post.mainImage && (
-        <ContentfulImage
-          alt={post.mainImage.image.title}
+        <ImgproxyImage
+          alt={post.mainImage.title}
           config={{
             width: 1024,
             aspectRatio: 16 / 9,
             fit: "fill"
           }}
-          data={post.mainImage.image}
+          data={{
+            title: post.mainImage.title,
+            url: `/assets/${post.mainImage.id}`
+          }}
         />
       )}
 

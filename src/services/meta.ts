@@ -5,7 +5,7 @@ export const siteMetadata = {
     summary: `Ohjelmoitsija. Saarnamies. Opettaja. Lamantiini- ja leffafani.`
   },
   description: `Pekkis.`,
-  siteUrl: `https://pekkis.eu/`,
+  siteUrl: `https://www.pekkis.eu/`,
   social: {
     twitter: `pekkisx`
   }

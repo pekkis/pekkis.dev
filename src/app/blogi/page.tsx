@@ -3,7 +3,7 @@ import BlogPosts from "@/components/BlogPosts";
 import Layout from "@/components/Layout";
 import MainHeading from "@/components/MainHeading";
 import Padder from "@/components/Padder";
-import { getHeadlines } from "@/services/blog";
+import { getHeadlines } from "@/services/blogposts";
 import { siteMetadata } from "@/services/meta";
 
 export const metadata = {

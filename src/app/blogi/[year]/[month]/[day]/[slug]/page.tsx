@@ -9,9 +9,10 @@ import BlogContent from "@/components/BlogContent";
 import BlogHeader from "@/components/BlogHeader";
 import Layout from "@/components/Layout";
 import Padder from "@/components/Padder";
-import { getBlogPosts, getHeadlines } from "@/services/blog";
+import * as blogService from "@/services/blogposts";
 import { blogPostUrl } from "@/services/url";
 import DidNotAgeWellWarning from "@/components/DidNotAgeWellWarning";
+import imgproxy from "@/services/imgproxy";
 
 type Props = {
   params: Promise<{
@@ -24,56 +25,55 @@ type Props = {
 
 export const revalidate = 600;
 
-const getPost = cache(async (slug: string) => {
-  const headlines = await getHeadlines(
-    100,
-    process.env.CONTENTFUL_PREVIEW === "true"
-  );
-  const ret = await getBlogPosts(
-    slug,
-    process.env.CONTENTFUL_PREVIEW === "true"
-  );
+const getPost = cache(
+  async (year: string, month: string, day: string, slug: string) => {
+    try {
+      const headlines = await blogService.getPosts(100);
+      const post = await blogService.getPost(year, month, day, slug);
 
-  if (ret.blogPostCollection.items.length !== 1) {
-    notFound();
+      const currentIndex = headlines.findIndex((h) => h.slug === slug);
+
+      const previous = headlines[currentIndex - 1] || null;
+      const next = headlines[currentIndex + 1] || null;
+
+      return {
+        post,
+        next,
+        previous
+      };
+    } catch (e) {
+      console.log(e);
+      notFound();
+    }
   }
-
-  const post = ret.blogPostCollection.items[0];
-
-  const currentIndex = headlines.blogPostCollection.items.findIndex(
-    (h) => h.slug === slug
-  );
-
-  const previous = headlines.blogPostCollection.items[currentIndex - 1] || null;
-  const next = headlines.blogPostCollection.items[currentIndex + 1] || null;
-
-  return {
-    post,
-    next,
-    previous
-  };
-});
+);
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { year, month, day, slug } = await params;
 
-  const data = await getPost(slug);
+  const data = await getPost(year, month, day, slug);
+
+  const url = imgproxy
+    .builder()
+    .generateUrl(`https://cms.pekkis.eu/assets/${data.post.mainImage.id}`);
 
   return {
     title: data.post.title,
     openGraph: {
-      images: [`${data.post.mainImage.image.url}?w=1024`]
+      images: [url]
     }
   };
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug, year, month, day } = await params;
-  const { post, next, previous } = await getPost(slug);
+  const { post, next, previous } = await getPost(year, month, day, slug);
 
   const date = DateTime.fromISO(post.date)
     .setLocale("fi")
     .setZone("Europe/Helsinki");
+
+  console.log("DEITTI", post.date, date);
 
   const yearX = date.toFormat("yyyy");
   const monthX = date.toFormat("LL");
@@ -83,7 +83,6 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const tags = post.contentfulMetadata.tags.map((t) => t.name);
   return (
     <Layout>
       <article
@@ -91,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
         itemScope
         itemType="http://schema.org/Article"
       >
-        {tags.includes("did-not-age-well") && <DidNotAgeWellWarning />}
+        {post.tags.includes("did-not-age-well") && <DidNotAgeWellWarning />}
 
         <BlogHeader post={post} />
         <BlogContent post={post} />
