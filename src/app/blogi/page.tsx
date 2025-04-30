@@ -13,7 +13,7 @@ export const metadata = {
 export const revalidate = 600;
 
 export default async function BlogPage() {
-  const ret = await getHeadlines(50, process.env.CONTENTFUL_PREVIEW === "true");
+  const headlines = await getHeadlines(50);
 
   return (
     <Layout>
@@ -41,9 +41,7 @@ export default async function BlogPage() {
           versioina.
         </p>
 
-        <BlogPosts
-          posts={ret.blogPostCollection.items.filter((h) => h.visible)}
-        />
+        <BlogPosts posts={headlines} />
       </Padder>
     </Layout>
   );

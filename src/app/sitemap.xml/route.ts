@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { blogPostUrl } from "@/services/url";
-import { BlogPostType } from "@/types";
-import { getSitemap } from "@/services/sitemap";
+import { getPosts } from "@/services/blogposts";
 
 type SitemapEntry = {
   loc: string;
@@ -35,8 +34,7 @@ function generateSiteMap(entries: SitemapEntry[]) {
 }
 
 export async function GET() {
-  const ret = await getSitemap();
-  const posts: BlogPostType[] = ret.blogPostCollection.items;
+  const posts = await getPosts();
 
   const postEntries = posts.map((p) => {
     return {

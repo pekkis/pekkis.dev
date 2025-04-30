@@ -48,5 +48,8 @@ export default [
     }
   },
 
-  eslintPluginPrettierRecommended
+  eslintPluginPrettierRecommended,
+  {
+    ignores: ["scripts/**.ts"]
+  }
 ];

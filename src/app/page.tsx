@@ -17,10 +17,7 @@ export const metadata = {
 };
 
 export default async function IndexPage() {
-  const headlines = await getHeadlines(
-    6,
-    process.env.CONTENTFUL_PREVIEW === "true"
-  );
+  const headlines = await getHeadlines(6);
 
   const linkzors = await getLinkzors();
 

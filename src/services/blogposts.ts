@@ -87,7 +87,7 @@ const fields = [
 
 export const getHeadlines = async (
   limit: number = 100
-): Promise<BlogPostType[]> => {
+): Promise<HeadlineType[]> => {
   const posts = await directus.request<HeadlineType[]>(
     readItems("BlogPosts", {
       fields: ["id", "title", "date", "slug", "tags", "ingress"],

@@ -23,6 +23,7 @@ const BlogPostRenderer: FC<Props> = ({ post }) => {
             return <ImageBlock key={item.id} block={item} />;
 
           default:
+            // @ts-expect-error this will still stay here.
             return <UnknownBlock key={item.id} block={item} />;
         }
       })}
