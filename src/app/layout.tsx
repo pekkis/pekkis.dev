@@ -1,5 +1,3 @@
-import PageTracker from "./PageTracker";
-
 import { Merriweather } from "next/font/google";
 
 const merriweather = Merriweather({
@@ -30,27 +28,9 @@ export default function RootLayout({
           data-domain="pekkis.eu"
           src="https://analytics.pekkis.eu/js/script.js"
         ></script>
-
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        />
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      `
-          }}
-        />
       </head>
 
-      <body className={merriweather.className}>
-        <PageTracker />
-        {children}
-      </body>
+      <body className={merriweather.className}>{children}</body>
     </html>
   );
 }

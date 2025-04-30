@@ -28,7 +28,7 @@ const BlogHeader: FC<Props> = ({ post }) => {
           config={{
             width: 1024,
             aspectRatio: 16 / 9,
-            fit: "fill"
+            fit: "fill-down"
           }}
           data={{
             title: post.mainImage.title,

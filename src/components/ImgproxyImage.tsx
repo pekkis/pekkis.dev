@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { containerClass, imageClass } from "./ContentfulImage.css";
+import { containerClass, imageClass } from "./ImgproxyImage.css";
 import imgproxy from "@/services/imgproxy";
 
 type ContentfulConfig = {

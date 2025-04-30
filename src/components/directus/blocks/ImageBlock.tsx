@@ -19,7 +19,7 @@ const ImageBlockRenderer: FC<Props> = async ({ block }) => {
         config={{
           width: 1024,
           aspectRatio: 16 / 9,
-          fit: "fill"
+          fit: "fill-down"
         }}
       />
       {block.data.caption && <p className={descClass}>{block.data.caption}</p>}

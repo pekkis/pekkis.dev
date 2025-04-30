@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
         itemScope
         itemType="http://schema.org/Article"
       >
-        {post.tags.includes("did-not-age-well") && <DidNotAgeWellWarning />}
+        {post.tags?.includes("did-not-age-well") && <DidNotAgeWellWarning />}
 
         <BlogHeader post={post} />
         <BlogContent post={post} />
