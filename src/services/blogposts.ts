@@ -123,8 +123,6 @@ export const getPost = async (
   day: string,
   slug: string
 ): Promise<BlogPostType> => {
-  console.log("FINDING POST", slug);
-
   const date = `${year}-${month}-${day}`;
 
   const posts = await directus.request<BlogPostType[]>(
@@ -144,8 +142,6 @@ export const getPost = async (
   }
 
   const post = posts[0];
-
-  console.log("post", util.inspect(post, false, 666));
 
   return post;
 };

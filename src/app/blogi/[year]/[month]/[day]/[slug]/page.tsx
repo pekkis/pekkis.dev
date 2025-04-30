@@ -73,8 +73,6 @@ export default async function BlogPostPage({ params }: Props) {
     .setLocale("fi")
     .setZone("Europe/Helsinki");
 
-  console.log("DEITTI", post.date, date);
-
   const yearX = date.toFormat("yyyy");
   const monthX = date.toFormat("LL");
   const dayX = date.toFormat("dd");
