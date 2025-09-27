@@ -1,0 +1,14 @@
+services:
+  next:
+    build:
+      dockerfile: docker/next/Dockerfile
+    networks:
+      - web
+    ports:
+      - 3050:3000
+
+volumes:
+  pg-data:
+
+networks:
+  web:

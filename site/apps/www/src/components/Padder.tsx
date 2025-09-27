@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import { baseClass } from "./Padder.css";
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const Padder: FC<Props> = ({ children }) => {

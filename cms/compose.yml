@@ -1,12 +1,4 @@
 services:
-  next:
-    build:
-      dockerfile: docker/next/Dockerfile
-    networks:
-      - web
-    ports:
-      - 3050:3000
-
   directus_database:
     image: postgis/postgis:17-3.5
     volumes:
@@ -34,7 +26,7 @@ services:
       start_period: 30s
 
   directus:
-    image: directus/directus:11
+    image: directus/directus:11.12.0
     ports:
       - 3051:8055
     depends_on:
@@ -64,6 +56,3 @@ services:
 
 volumes:
   pg-data:
-
-networks:
-  web:
