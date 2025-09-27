@@ -4,7 +4,7 @@
   "private": true,
   "description": "pekkis.eu",
   "version": "2.0.0",
-  "author": "Mikko Forsström aka Pekkis <pekkisx@gmail.com>",
+  "author": "Pekkis <pekkisx@gmail.com>",
   "dependencies": {
     "@directus/sdk": "^19.1.0",
     "@next/bundle-analyzer": "^15.3.1",
@@ -25,14 +25,12 @@
     "remeda": "^2.21.3"
   },
   "devDependencies": {
-    "@contentful/rich-text-types": "^17.0.0",
     "@types/luxon": "^3.6.2",
     "@types/node": "^22.14.1",
     "@types/ramda": "^0.30.2",
     "@types/react": "19.1.2",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@vanilla-extract/next-plugin": "^2.4.10",
-    "contentful": "^11.5.18",
     "dotenv": "^16.5.0",
     "eslint": "^9.25.1",
     "eslint-config-next": "^15.3.1",

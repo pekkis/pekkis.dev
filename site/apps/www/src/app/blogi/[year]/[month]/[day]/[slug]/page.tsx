@@ -55,7 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = imgproxy
     .builder()
-    .generateUrl(`https://cms.pekkis.eu/assets/${data.post.mainImage.id}`);
+    .generateUrl(
+      `${process.env.DIRECTUS_ENDPOINT}/assets/${data.post.mainImage.id}`
+    );
 
   return {
     title: data.post.title,
