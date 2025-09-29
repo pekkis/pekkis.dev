@@ -2,7 +2,6 @@
 
 import { readItems } from "@directus/sdk";
 import { directus } from "./directus";
-import util from "node:util";
 
 export type DirectusImage = {
   id: string;
@@ -11,6 +10,20 @@ export type DirectusImage = {
   title: string;
 
   description: string;
+};
+
+export type NestedListContent = {
+  content: string;
+  items: NestedListContent[];
+};
+
+export type NestedlistBlock = {
+  id: string;
+  type: "nestedlist";
+  data: {
+    style: "unordered" | "ordered";
+    items: NestedListContent[];
+  };
 };
 
 export type HeaderBlock = {
@@ -46,7 +59,7 @@ export type ParagraphBlock = {
   };
 };
 
-export type Block = ParagraphBlock | HeaderBlock | ImageBlock;
+export type Block = ParagraphBlock | HeaderBlock | ImageBlock | NestedlistBlock;
 
 export type HeadlineType = {
   id: string;

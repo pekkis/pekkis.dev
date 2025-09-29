@@ -25,7 +25,7 @@ const VideoPlayer: FC<Props> = ({ videoId, timestamp }) => {
   return (
     <div className={containerClass}>
       <div className={innerClass}>
-        <ReactPlayer controls width="100%" height="100%" url={videoUrl} />
+        <ReactPlayer controls width="100%" height="100%" src={videoUrl} />
       </div>
     </div>
   );

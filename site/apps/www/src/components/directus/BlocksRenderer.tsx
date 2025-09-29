@@ -1,18 +1,19 @@
 import HeaderBlock from "@/components/directus/blocks/HeaderBlock";
 import ImageBlock from "@/components/directus/blocks/ImageBlock";
+import NestedlistBlockRenderer from "@/components/directus/blocks/nestedlist/NestedlistBlock";
 import ParagraphBlock from "@/components/directus/blocks/ParagraphBlock";
 import UnknownBlock from "@/components/directus/blocks/UnknownBlock";
-import { BlogPostType } from "@/services/blogposts";
+import { Block } from "@/services/blogposts";
 import { FC } from "react";
 
 type Props = {
-  post: BlogPostType;
+  blocks: Block[];
 };
 
-const BlogPostRenderer: FC<Props> = ({ post }) => {
+const BlocksRenderer: FC<Props> = ({ blocks }) => {
   return (
     <>
-      {post.content.blocks.map((item) => {
+      {blocks.map((item) => {
         switch (item.type) {
           case "header":
             return <HeaderBlock key={item.id} block={item} />;
@@ -21,6 +22,9 @@ const BlogPostRenderer: FC<Props> = ({ post }) => {
 
           case "image":
             return <ImageBlock key={item.id} block={item} />;
+
+          case "nestedlist":
+            return <NestedlistBlockRenderer key={item.id} block={item} />;
 
           default:
             // @ts-expect-error this will still stay here.
@@ -31,4 +35,4 @@ const BlogPostRenderer: FC<Props> = ({ post }) => {
   );
 };
 
-export default BlogPostRenderer;
+export default BlocksRenderer;

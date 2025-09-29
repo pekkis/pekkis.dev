@@ -9,6 +9,7 @@ import Preachings from "@/components/Preachings";
 import { getLinkzors } from "@/services/pexu";
 import { getHeadlines } from "@/services/blogposts";
 import { getPreachings } from "@/services/preachings";
+import PageRenderer from "@/components/directus/PageRenderer";
 
 export const revalidate = 600;
 
@@ -28,6 +29,8 @@ export default async function IndexPage() {
       <Layout>
         <Padder>
           <Bio />
+
+          <PageRenderer slug="frontpage" />
 
           <MainHeading>Helei ja tervetuloa!</MainHeading>
 
@@ -57,10 +60,6 @@ export default async function IndexPage() {
           <SubHeading>Pekkis kirjoittaa</SubHeading>
 
           <BlogPosts posts={headlines} />
-
-          <SubHeading>Pekkis saarnaa</SubHeading>
-
-          <Preachings videos={preachings} />
         </Padder>
       </Layout>
     </>
