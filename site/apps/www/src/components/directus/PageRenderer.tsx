@@ -1,3 +1,4 @@
+import HeadlinesPageBlockRenderer from "@/components/directus/page-blocks/HeadlinesPageBlock";
 import PreachingsPageBlockRenderer from "@/components/directus/page-blocks/PreachingsPageBlock";
 import WysiwygPageBlockRenderer from "@/components/directus/page-blocks/WysiwygPageBlock";
 import MainHeading from "@/components/MainHeading";
@@ -25,6 +26,11 @@ const PageRenderer: FC<Props> = async ({ slug }) => {
             return (
               <PreachingsPageBlockRenderer block={block} key={block.sort} />
             );
+          case "block_headlines":
+            return (
+              <HeadlinesPageBlockRenderer block={block} key={block.sort} />
+            );
+
           default:
             // @ts-expect-error this will still stay here.
             return <div key={block.sort}>unknown page block</div>;

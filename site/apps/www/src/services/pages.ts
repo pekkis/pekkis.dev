@@ -25,7 +25,16 @@ export type PreachingsPageBlock = {
   };
 };
 
-type PageBlock = WysiwygPageBlock | PreachingsPageBlock;
+export type HeadlinesPageBlock = {
+  sort: number;
+  collection: "block_headlines";
+  item: {
+    title: string;
+    amount: number;
+  };
+};
+
+type PageBlock = WysiwygPageBlock | PreachingsPageBlock | HeadlinesPageBlock;
 
 export type PageType = {
   id: string;
@@ -48,7 +57,8 @@ export const getPage = async (slug: string): Promise<PageType> => {
             {
               item: {
                 block_wysiwyg: ["*"],
-                block_preachings: ["title", "preachings.Preachings_id.*"]
+                block_preachings: ["title", "preachings.Preachings_id.*"],
+                block_headlines: ["*"]
               }
             }
           ]

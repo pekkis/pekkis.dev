@@ -1,7 +1,8 @@
 services:
   next:
     build:
-      dockerfile: docker/next/Dockerfile
+      context: "../.."
+      dockerfile: apps/www/docker/next/Dockerfile
     networks:
       - web
     ports:
