@@ -12,8 +12,6 @@ type Props = {
 const PageRenderer: FC<Props> = async ({ slug }) => {
   const page = await getPage(slug);
 
-  console.log("page:", page);
-
   return (
     <>
       <MainHeading>{page.title}</MainHeading>
