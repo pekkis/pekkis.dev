@@ -24,8 +24,8 @@
   "devDependencies": {
     "rimraf": "^6.0.1",
     "rollup-plugin-node-externals": "^8.1.1",
-    "typescript": "^5.9.2",
-    "vite": "6.2.1",
+    "typescript": "catalog:",
+    "vite": "7.1.9",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   }

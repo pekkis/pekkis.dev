@@ -12,8 +12,6 @@ const PreachingsPageBlockRenderer: FC<Props> = ({ block }) => {
     return p.Preachings_id;
   });
 
-  console.log("PREACHINGS", preachings);
-
   return (
     <>
       <SubHeading>{block.item.title}</SubHeading>

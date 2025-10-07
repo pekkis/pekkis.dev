@@ -9,8 +9,6 @@ type Props = {
 };
 
 const HeadlinesPageBlockRenderer: FC<Props> = async ({ block }) => {
-  console.log("BLOCK", block);
-
   const headlines = await getHeadlines(block.item.amount);
 
   return (

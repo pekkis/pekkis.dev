@@ -64,7 +64,6 @@ const Preachings: FC<Props> = ({ videos }) => {
         <div className={browserClass}>
           <FaChevronCircleRight
             onClick={(e) => {
-              console.log("hip hei?");
               e.stopPropagation();
               e.preventDefault();
               next();

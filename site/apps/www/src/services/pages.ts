@@ -74,7 +74,5 @@ export const getPage = async (slug: string): Promise<PageType> => {
     throw new Error(`Page with slug "${slug}" not found.`);
   }
 
-  console.log("page", util.inspect(page, { depth: null }));
-
   return page;
 };
