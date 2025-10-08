@@ -73,6 +73,7 @@ export type HeadlineType = {
 export type BlogPostType = {
   id: string;
   slug: string;
+  description?: string;
   tags: string[];
   title: string;
   ingress: string;
@@ -90,6 +91,7 @@ const fields = [
   "slug",
   "tags",
   "ingress",
+  "description",
   "mainImage.id",
   "mainImage.width",
   "mainImage.height",
