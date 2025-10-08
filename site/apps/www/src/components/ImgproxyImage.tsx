@@ -49,13 +49,15 @@ type Props = {
   alt?: string;
   config?: ContentfulConfig;
   loading?: "lazy" | "eager";
+  fetchPriority?: "auto" | "high" | "low";
 };
 
 const ImgproxyImage: FC<Props> = ({
   data,
   alt,
   config = {},
-  loading = "lazy"
+  loading = "lazy",
+  fetchPriority = "auto"
 }) => {
   const builder = urlParamsFromConfig(config);
 
@@ -67,6 +69,7 @@ const ImgproxyImage: FC<Props> = ({
     <picture className={containerClass}>
       <img
         className={imageClass}
+        fetchPriority={fetchPriority}
         loading={loading}
         src={imageUrl}
         title={data.title}

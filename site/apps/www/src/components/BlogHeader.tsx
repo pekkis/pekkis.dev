@@ -24,6 +24,8 @@ const BlogHeader: FC<Props> = ({ post }) => {
     <header className={rootClass}>
       {post.mainImage && (
         <ImgproxyImage
+          loading="eager"
+          fetchPriority="high"
           alt={post.mainImage.title}
           config={{
             width: 1024,
