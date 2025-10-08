@@ -7,7 +7,9 @@ import PageRenderer from "@/components/directus/PageRenderer";
 export const revalidate = 600;
 
 export const metadata = {
-  title: siteMetadata.title
+  title: siteMetadata.title,
+  description:
+    "Pekkiksen kotskaporttaali. Jokaisella pitäisi olla omat kotskasivut, ja minulla on tosi hieno."
 };
 
 export default async function IndexPage() {
