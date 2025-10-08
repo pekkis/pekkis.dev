@@ -9,7 +9,7 @@ import {
 } from "./BlogHeader.css";
 
 import { BlogPostType } from "@/services/blogposts";
-import ImgproxyImage from "@/components/ImgproxyImage";
+import AdvancedImage from "@/components/AdvancedImage";
 
 type Props = {
   post: BlogPostType;
@@ -23,12 +23,12 @@ const BlogHeader: FC<Props> = ({ post }) => {
   return (
     <header className={rootClass}>
       {post.mainImage && (
-        <ImgproxyImage
+        <AdvancedImage
           loading="eager"
           fetchPriority="high"
           alt={post.mainImage.title}
           config={{
-            width: 1024,
+            width: [350, 640, 1024, 2048],
             aspectRatio: 16 / 9,
             fit: "fill-down"
           }}
