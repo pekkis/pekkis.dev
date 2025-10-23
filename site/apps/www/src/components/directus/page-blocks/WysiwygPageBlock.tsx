@@ -9,7 +9,7 @@ type Props = {
 const WysiwygPageBlockRenderer: FC<Props> = ({ block }) => {
   return (
     <>
-      <BlocksRenderer blocks={block.item.blocks.blocks} />
+      <BlocksRenderer blocks={block.item.blocks.blocks || []} />
     </>
   );
 

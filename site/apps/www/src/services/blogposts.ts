@@ -59,7 +59,25 @@ export type ParagraphBlock = {
   };
 };
 
-export type Block = ParagraphBlock | HeaderBlock | ImageBlock | NestedlistBlock;
+export type EmbedBlock = {
+  id: string;
+  type: "embed";
+  data: {
+    service: string;
+    source: string;
+    embed: string;
+    width: number;
+    height: number;
+    caption: string;
+  };
+};
+
+export type Block =
+  | EmbedBlock
+  | ParagraphBlock
+  | HeaderBlock
+  | ImageBlock
+  | NestedlistBlock;
 
 export type HeadlineType = {
   id: string;
@@ -79,8 +97,8 @@ export type BlogPostType = {
   ingress: string;
   date: string;
   mainImage: DirectusImage;
-  content: {
-    blocks: Block[];
+  content?: {
+    blocks?: Block[];
   };
 };
 
@@ -100,14 +118,17 @@ const fields = [
   "content"
 ];
 
+type Status = "published" | "draft";
+
 export const getHeadlines = async (
-  limit: number = 100
+  limit: number = 100,
+  statuses: Status[] = ["published"]
 ): Promise<HeadlineType[]> => {
   const posts = await directus.request<HeadlineType[]>(
     readItems("BlogPosts", {
       fields: ["id", "title", "date", "slug", "tags", "ingress"],
       filter: {
-        status: { _eq: "published" }
+        status: { _in: statuses }
       },
       sort: ["-date"],
       limit
@@ -118,12 +139,13 @@ export const getHeadlines = async (
 };
 
 export const getPosts = async (
-  limit: number = 100
+  limit: number = 100,
+  statuses: Status[] = ["published"]
 ): Promise<BlogPostType[]> => {
   const posts = await directus.request<BlogPostType[]>(
     readItems("BlogPosts", {
       fields,
-      filter: { status: { _eq: "published" } },
+      filter: { status: { _in: statuses } },
       sort: ["-date"],
       limit
     })
@@ -136,14 +158,15 @@ export const getPost = async (
   year: string,
   month: string,
   day: string,
-  slug: string
+  slug: string,
+  statuses: Status[] = ["published"]
 ): Promise<BlogPostType> => {
   const date = `${year}-${month}-${day}`;
 
   const posts = await directus.request<BlogPostType[]>(
     readItems("BlogPosts", {
       filter: {
-        status: { _eq: "published" },
+        status: { _in: statuses },
         date: { _eq: date },
         slug: { _eq: slug }
       },

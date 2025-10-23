@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import Padder from "@/components/Padder";
 import { siteMetadata } from "@/services/meta";
 import PageRenderer from "@/components/directus/PageRenderer";
+import { Tussi } from "@pekkis-eu/core-services";
 
 export const revalidate = 600;
 
@@ -17,7 +18,9 @@ export default async function IndexPage() {
     <>
       <Layout>
         <Padder>
+          <Tussi />
           <Bio />
+
           <PageRenderer slug="frontpage" />
         </Padder>
       </Layout>

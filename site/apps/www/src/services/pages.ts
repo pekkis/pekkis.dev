@@ -9,7 +9,7 @@ export type WysiwygPageBlock = {
   sort: number;
   item: {
     blocks: {
-      blocks: Block[];
+      blocks?: Block[];
     };
   };
 };

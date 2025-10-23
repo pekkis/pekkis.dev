@@ -29,7 +29,13 @@ const getPost = cache(
   async (year: string, month: string, day: string, slug: string) => {
     try {
       const headlines = await blogService.getPosts(100);
-      const post = await blogService.getPost(year, month, day, slug);
+      const post = await blogService.getPost(
+        year,
+        month,
+        day,
+        slug,
+        process.env.PREVIEW ? ["draft", "published"] : ["published"]
+      );
 
       const currentIndex = headlines.findIndex((h) => h.slug === slug);
 

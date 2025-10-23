@@ -12,7 +12,7 @@ const BlogContent: FC<Props> = ({ post }) => {
     <div className={rootClass}>
       <p className={ingressClass}>{post.ingress}</p>
 
-      <BlocksRenderer blocks={post.content.blocks} />
+      <BlocksRenderer blocks={post.content?.blocks || []} />
     </div>
   );
 };
