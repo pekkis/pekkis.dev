@@ -1,7 +1,5 @@
 import Container from "./Container";
 
-import { root } from "./Layout.css";
-
 import Header from "./Header";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
@@ -17,10 +15,8 @@ const Layout: FC<Props> = ({ children }) => {
       <CookieConsent />
       <Header />
       <Container>
-        <div className={root}>
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <main>{children}</main>
+        <Footer />
       </Container>
     </>
   );

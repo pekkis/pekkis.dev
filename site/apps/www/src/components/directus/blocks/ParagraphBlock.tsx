@@ -6,7 +6,9 @@ type Props = {
 };
 
 const ParagraphBlockRenderer: FC<Props> = ({ block }) => {
-  return <p dangerouslySetInnerHTML={{ __html: block.data.text }} />;
+  return (
+    <p className="my-4" dangerouslySetInnerHTML={{ __html: block.data.text }} />
+  );
 };
 
 export default ParagraphBlockRenderer;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import ReactCookieConsent from "react-cookie-consent";
 
 const CookieConsent: FC = () => {
@@ -11,7 +11,7 @@ const CookieConsent: FC = () => {
       acceptOnScrollPercentage={25}
       buttonText="No sepä kiva!"
       cookieName="myAwesomeCookieName2"
-      style={{ background: "#000" }}
+      style={{ background: "#000", padding: "1rem" }}
       buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
       expires={150}
     >

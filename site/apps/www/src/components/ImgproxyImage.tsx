@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { containerClass, imageClass } from "./ImgproxyImage.css";
 import imgproxy from "@/services/imgproxy";
 
 type ContentfulConfig = {
@@ -66,9 +65,9 @@ const ImgproxyImage: FC<Props> = ({
   );
 
   return (
-    <picture className={containerClass}>
+    <picture>
       <img
-        className={imageClass}
+        className="w-full max-w-full block aspect-video"
         fetchPriority={fetchPriority}
         loading={loading}
         src={imageUrl}

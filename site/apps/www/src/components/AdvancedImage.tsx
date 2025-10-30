@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { containerClass, imageClass } from "./AdvancedImage.css";
 import imgproxy from "@/services/imgproxy";
 
 type ImageConfig = {
@@ -95,11 +94,11 @@ const AdvancedImage: FC<Props> = ({
   );
 
   return (
-    <picture className={containerClass}>
+    <picture>
       <source srcSet={srcsets} />
 
       <img
-        className={imageClass}
+        className="w-full max-w-full block aspect-video"
         fetchPriority={fetchPriority}
         loading={loading}
         src={imageUrl}

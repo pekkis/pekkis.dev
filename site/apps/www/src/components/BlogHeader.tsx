@@ -1,13 +1,5 @@
 import { DateTime } from "luxon";
 import { FC } from "react";
-
-import {
-  dateClass,
-  headerClass,
-  headerContentClass,
-  rootClass
-} from "./BlogHeader.css";
-
 import { BlogPostType } from "@/services/blogposts";
 import AdvancedImage from "@/components/AdvancedImage";
 
@@ -21,7 +13,7 @@ const BlogHeader: FC<Props> = ({ post }) => {
     .setZone("Europe/Helsinki");
 
   return (
-    <header className={rootClass}>
+    <header className="m-0">
       {post.mainImage && (
         <AdvancedImage
           loading="eager"
@@ -39,11 +31,11 @@ const BlogHeader: FC<Props> = ({ post }) => {
         />
       )}
 
-      <div className={headerContentClass}>
-        <h1 className={headerClass} itemProp="headline">
+      <div className="p-4">
+        <h2 className="text-2xl m-0" itemProp="headline">
           {post.title}
-        </h1>
-        <time className={dateClass} dateTime={date.toFormat("yyyy-LL-dd")}>
+        </h2>
+        <time className="text-2xl m-0" dateTime={date.toFormat("yyyy-LL-dd")}>
           {date.toLocaleString()}
         </time>
       </div>

@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 
-import { containerClass, innerClass } from "./VideoPlayer.css";
 import dynamic from "next/dynamic";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
@@ -23,8 +22,8 @@ const VideoPlayer: FC<Props> = ({ videoId, timestamp }) => {
     : `https://www.youtube.com/watch?v=${videoId}&t=${timestamp}`;
 
   return (
-    <div className={containerClass}>
-      <div className={innerClass}>
+    <div className="relative w-full aspect-video">
+      <div className="absolute top-0 bottom-0 left-0 right-0">
         <ReactPlayer controls width="100%" height="100%" src={videoUrl} />
       </div>
     </div>

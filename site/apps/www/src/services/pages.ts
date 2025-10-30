@@ -1,6 +1,5 @@
 import { readItems } from "@directus/sdk";
 import { directus } from "./directus";
-import util from "node:util";
 import { Block } from "@/services/blogposts";
 import { PreachingType } from "@/services/preachings";
 

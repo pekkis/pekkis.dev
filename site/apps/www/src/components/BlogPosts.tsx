@@ -1,10 +1,9 @@
-import Link from "next/link";
-
 import { DateTime } from "luxon";
 import { FC } from "react";
-import { blogPostUrl } from "../services/url";
-import { dateClass, headerClass, listClass, postClass } from "./BlogPosts.css";
+import { blogPostUrl } from "@/services/url";
 import { HeadlineType } from "@/services/blogposts";
+import { Paragraph } from "@/components/Paragraph";
+import { Link } from "@/components/Link";
 
 type Props = {
   posts: HeadlineType[];
@@ -12,7 +11,7 @@ type Props = {
 
 const BlogPosts: FC<Props> = ({ posts }) => {
   return (
-    <ol className={listClass}>
+    <ol>
       {posts.map((post) => {
         const date = DateTime.fromISO(post.date)
           .setLocale("fi")
@@ -21,25 +20,25 @@ const BlogPosts: FC<Props> = ({ posts }) => {
         return (
           <li key={post.slug}>
             <article
-              className={postClass}
+              className="mt-4 mb-6"
               itemScope
               itemType="http://schema.org/Article"
             >
               <header>
-                <h3 className={headerClass}>
+                <h3 className="m-0 text-lg font-semibold">
                   <Link href={blogPostUrl(post)} itemProp="url">
                     <span itemProp="headline">{post.title}</span>
                   </Link>
                 </h3>
                 <time
-                  className={dateClass}
+                  className="text-base m-0"
                   dateTime={date.toFormat("yyyy-LL-dd")}
                 >
                   {date.toLocaleString()}
                 </time>
               </header>
               <section>
-                <p>{post.ingress}</p>
+                <Paragraph>{post.ingress}</Paragraph>
               </section>
             </article>
           </li>

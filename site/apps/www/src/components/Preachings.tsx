@@ -1,17 +1,10 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import VideoPlayer from "./VideoPlayer";
-import { nth } from "ramda";
 import { FC, useState } from "react";
 import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
-import {
-  baseClass,
-  browserClass,
-  clickableClass,
-  nonClickableClass,
-  titleClass
-} from "./Preachings.css";
+
 import { PreachingType } from "@/services/preachings";
 
 type Props = {
@@ -19,12 +12,7 @@ type Props = {
 };
 
 const Preachings: FC<Props> = ({ videos }) => {
-  const [isHydrated, setIsHydrated] = useState<boolean>(false);
   const [current, setCurrent] = useState<number>(0);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   const previous = useCallback(() => {
     setCurrent((current) => Math.max(current - 1, 0));
@@ -33,11 +21,7 @@ const Preachings: FC<Props> = ({ videos }) => {
     setCurrent((current) => Math.min(current + 1, videos.length - 1));
   }, [setCurrent, videos]);
 
-  if (!isHydrated) {
-    return null;
-  }
-
-  const video = nth(current, videos);
+  const video = videos.at(current);
 
   if (!video) {
     return null;
@@ -48,8 +32,8 @@ const Preachings: FC<Props> = ({ videos }) => {
   return (
     <>
       <VideoPlayer videoId={video.videoId} timestamp={video.timestamp} />
-      <div className={baseClass}>
-        <div className={browserClass}>
+      <div className="mt-2 mb-8 w-full flex justify-between items-center">
+        <div className="self-start text-4xl">
           <FaChevronCircleLeft
             title="Edellinen"
             onClick={(e) => {
@@ -57,11 +41,15 @@ const Preachings: FC<Props> = ({ videos }) => {
               e.preventDefault();
               previous();
             }}
-            className={hasLess ? clickableClass : nonClickableClass}
+            className={
+              hasLess
+                ? "opacity-100 cursor-pointer"
+                : "opacity-50 cursor-not-allowed"
+            }
           />
         </div>
-        <div className={titleClass}>{video.title}</div>
-        <div className={browserClass}>
+        <div className="mx-2">{video.title}</div>
+        <div className="self-start text-4xl">
           <FaChevronCircleRight
             onClick={(e) => {
               e.stopPropagation();
@@ -69,7 +57,12 @@ const Preachings: FC<Props> = ({ videos }) => {
               next();
             }}
             title="Seuraava"
-            className={hasMore ? clickableClass : nonClickableClass}
+            className={
+              hasMore
+                ? "opacity-100 cursor-pointer"
+                : "opacity-50 cursor-not-allowed"
+            }
+            role="button"
           />
         </div>
       </div>

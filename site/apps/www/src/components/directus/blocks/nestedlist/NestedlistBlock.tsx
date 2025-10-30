@@ -10,7 +10,7 @@ const NestedlistBlockRenderer: FC<Props> = ({ block }) => {
   const Component = block.data.style === "unordered" ? "ul" : "ol";
 
   return (
-    <Component>
+    <Component className="list-inside list-disc">
       {block.data.items.map((item, i) => {
         return <NestedlistContent key={i} content={item} />;
       })}

@@ -1,5 +1,3 @@
-import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
-const withVanillaExtract = createVanillaExtractPlugin();
 import process from "node:process";
 import { withSentryConfig } from "@sentry/nextjs";
 
@@ -16,17 +14,12 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: false
-  },
-  eslint: {
-    ignoreDuringBuilds: false
-  }
+  reactCompiler: true
 };
 
-const pieru = piped(withBundleAnalyzer, withVanillaExtract)(nextConfig);
+const config = piped(withBundleAnalyzer)(nextConfig);
 
-export default withSentryConfig(pieru, {
+export default withSentryConfig(config, {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

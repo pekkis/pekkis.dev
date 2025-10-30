@@ -1,14 +1,31 @@
 import { NestedListContent } from "@/services/blogposts";
 import { FC } from "react";
 
-import parse from "html-react-parser";
+import parse, { DOMNode, domToReact } from "html-react-parser";
 
 type Props = {
   content: NestedListContent;
 };
 
 const NestedlistContent: FC<Props> = ({ content }) => {
-  const parsedContent = parse(content.content);
+  const parsedContent = parse(content.content, {
+    replace(domNode) {
+      if (domNode.type === "tag") {
+        if (domNode.name === "a") {
+          return (
+            <a
+              href={domNode.attribs.href}
+              className="underline underline-offset-2"
+            >
+              {domToReact(domNode.children as DOMNode[])}
+            </a>
+          );
+        }
+      }
+
+      return;
+    }
+  });
   return (
     <li>
       {parsedContent}

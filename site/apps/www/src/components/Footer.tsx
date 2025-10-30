@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { baseClass } from "./Footer.css";
 import Padder from "./Padder";
 
 const Footer: FC = () => {
   return (
-    <footer className={baseClass}>
+    <footer className="mt-16 mb-4 text-center">
       <Padder>
         Copyright &copy; {new Date().getFullYear()} Mikko &quot;Pekkis&quot;
         Forsström.

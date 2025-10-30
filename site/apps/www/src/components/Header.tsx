@@ -2,25 +2,19 @@
 
 import Link from "next/link";
 import { FC } from "react";
-import {
-  baseClass,
-  headerClass,
-  headerLinkClass,
-  activeLinkClass
-} from "./Header.css";
-import cx from "clsx";
 import { usePathname } from "next/navigation";
+import { cn } from "@/services/cn";
 
 const Header: FC = () => {
   const pathname = usePathname();
 
   return (
-    <header className={baseClass}>
-      <nav className={headerClass}>
+    <header className="m-0 p-4 bg-black sticky top-0 shadow-lg/30 text-white">
+      <nav className="text-base">
         <Link
           href="/"
-          className={cx(headerLinkClass, {
-            [activeLinkClass]: pathname === "/"
+          className={cn("text-white", {
+            ["font-bold"]: pathname === "/"
           })}
         >
           pekkis.eu
@@ -28,8 +22,8 @@ const Header: FC = () => {
         |{" "}
         <Link
           href="/blogi"
-          className={cx(headerLinkClass, {
-            [activeLinkClass]: pathname?.startsWith("/blogi")
+          className={cn("text-white", {
+            ["font-bold"]: pathname?.startsWith("/blogi")
           })}
         >
           blogi

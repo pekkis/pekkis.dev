@@ -1,8 +1,10 @@
 import { Merriweather } from "next/font/google";
 
+import "./globals.css";
+
 const merriweather = Merriweather({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   display: "swap"
 });
 
