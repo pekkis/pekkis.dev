@@ -1,21 +1,9 @@
-minimumReleaseAge: 4320
-
-minimumReleaseAgeExclude:
-  - "@next/third-parties"
-  - "next"
-  - "@next/bundle-analyzer"
-  - "eslint-config-next"
-  - "@next/eslint-plugin-next"
-  - "@next/env"
-  - "react"
-  - "react-dom"
-
 packages:
   - packages/*
   - apps/*
 
 catalog:
-  rimraf: ^6.0.1
+  rimraf: ^6.1.2
   typescript: ^5.9.3
   vite: ^6.2.1
   vite-plugin-dts: ^4.5.4
@@ -23,5 +11,17 @@ catalog:
 
 injectWorkspacePackages: true
 
+minimumReleaseAge: 4320
+
+minimumReleaseAgeExclude:
+  - '@next/third-parties'
+  - next
+  - '@next/bundle-analyzer'
+  - eslint-config-next
+  - '@next/eslint-plugin-next'
+  - '@next/env'
+  - react
+  - react-dom
+
 onlyBuiltDependencies:
-  - "@sentry/cli"
+  - '@sentry/cli'
