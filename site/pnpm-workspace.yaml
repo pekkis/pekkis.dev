@@ -3,11 +3,11 @@ packages:
   - apps/*
 
 catalog:
-  rimraf: ^6.1.2
+  rimraf: ^6.1.3
   typescript: ^5.9.3
   vite: ^6.2.1
   vite-plugin-dts: ^4.5.4
-  vitest: ^3.2.4
+  vitest: ^4.0.18
 
 injectWorkspacePackages: true
 
@@ -25,3 +25,4 @@ minimumReleaseAgeExclude:
 
 onlyBuiltDependencies:
   - '@sentry/cli'
+  - esbuild

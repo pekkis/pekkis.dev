@@ -2,3 +2,4 @@
 extensions/
 templates/
 uploads/
+*.sql

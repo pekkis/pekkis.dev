@@ -27,6 +27,8 @@ const nextConfig = {
 const pieru = piped(withBundleAnalyzer, withVanillaExtract)(nextConfig);
 
 export default withSentryConfig(pieru, {
+
+
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
