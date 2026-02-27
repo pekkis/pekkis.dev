@@ -1,6 +1,7 @@
 services:
   directus_database:
     image: postgis/postgis:17-3.5
+    platform: linux/x86_64
     networks:
       - pekkis
     volumes:
@@ -32,7 +33,7 @@ services:
   directus:
     networks:
       - pekkis
-    image: directus/directus:11.12.0
+    image: directus/directus:11.15.4
     ports:
       - 3051:8055
     depends_on:
