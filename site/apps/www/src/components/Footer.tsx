@@ -6,8 +6,8 @@ const Footer: FC = () => {
   return (
     <footer className={baseClass}>
       <Padder>
-        Copyright &copy; {new Date().getFullYear()} Mikko &quot;Pekkis&quot;
-        Forsström.
+        Valmistettu Vantaalla fermentoimalla. Copyright &copy;{" "}
+        {new Date().getFullYear()} Mikko &quot;Pekkis&quot; Forsström.
       </Padder>
     </footer>
   );
