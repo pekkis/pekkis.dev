@@ -5,7 +5,10 @@ import Padder from "./Padder";
 const Footer: FC = () => {
   return (
     <footer className={baseClass}>
-      <Padder>Valmistettu Vantaalla fermentoimalla</Padder>
+      <Padder>
+        Valmistettu Vantaalla fermentoimalla. Copyright &copy;{" "}
+        {new Date().getFullYear()} Mikko &quot;Pekkis&quot; Forsström.
+      </Padder>
     </footer>
   );
 };
