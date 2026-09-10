@@ -70,5 +70,6 @@
   "browserslist": [
     "defaults and fully supports es6-module",
     "maintained node versions"
-  ]
+  ],
+  "packageManager": "pnpm@11.26.0"
 }

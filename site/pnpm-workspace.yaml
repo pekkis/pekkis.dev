@@ -2,6 +2,13 @@ packages:
   - packages/*
   - apps/*
 
+allowBuilds:
+  '@sentry/cli': true
+  '@swc/core': true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+
 catalog:
   rimraf: ^6.1.3
   typescript: ^5.9.3
@@ -23,9 +30,3 @@ minimumReleaseAgeExclude:
   - react
   - react-dom
   - '@next/swc-*'
-
-onlyBuiltDependencies:
-  - '@sentry/cli'
-  - '@swc/core'
-  - esbuild
-  - sharp
