@@ -15,6 +15,7 @@
     "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
+    "isolatedDeclarations": true,
     "declarationDir": "dist",
     "types": []
   },

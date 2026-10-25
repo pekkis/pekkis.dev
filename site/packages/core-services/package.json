@@ -2,11 +2,11 @@
   "name": "@pekkis-eu/core-services",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -15,18 +15,16 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "vite build --watch",
-    "build": "vite build",
-    "tsc": "tsc",
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
     "test:dev": "vitest",
     "test": "vitest run"
   },
   "devDependencies": {
     "rimraf": "catalog:",
-    "rollup-plugin-node-externals": "^8.1.2",
+    "tsdown": "^0.23.1",
     "typescript": "catalog:",
-    "vite": "7.3.1",
-    "vite-plugin-dts": "^4.5.4",
     "vitest": "catalog:"
   },
   "packageManager": "pnpm@11.26.0"

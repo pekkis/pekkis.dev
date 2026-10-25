@@ -9,17 +9,20 @@ Provides a factory-based URL generator that creates properly formatted URLs base
 ## Quick Start
 
 ```typescript
-import {createUrlGeneratorInstance, type ConfigUrls} from '@veikkaus/url-generator'
-import {getClientOrigin} from '@veikkaus/utils/url'
-import {site} from '@veikkaus/site-config/sites/veikkaus'
-import {getPageLanguage} from 'common/lang/setup'
+import {
+  createUrlGeneratorInstance,
+  type ConfigUrls
+} from "@veikkaus/url-generator";
+import { getClientOrigin } from "@veikkaus/utils/url";
+import { site } from "@veikkaus/site-config/sites/veikkaus";
+import { getPageLanguage } from "common/lang/setup";
 
 // Define your URL configuration
 const configUrls = {
-  lotto: {prod: 'lotto'},
-  eurojackpot: {prod: 'eurojackpot', fragment: '#!/draw-results'}
+  lotto: { prod: "lotto" },
+  eurojackpot: { prod: "eurojackpot", fragment: "#!/draw-results" }
   // ... other URL configs
-} satisfies ConfigUrls
+} satisfies ConfigUrls;
 
 // Create the instance
 const urlGenerator = createUrlGeneratorInstance({
@@ -27,17 +30,17 @@ const urlGenerator = createUrlGeneratorInstance({
   getPageLanguage,
   getClientOrigin,
   siteBaseUrl: site.baseUrl
-})
+});
 
 // Use the generator
-const relativeUrl = urlGenerator.getRelativeUrl({urlKey: 'lotto'})
+const relativeUrl = urlGenerator.getRelativeUrl({ urlKey: "lotto" });
 // Result: '/fi/lotto'
 
 const absoluteUrl = urlGenerator.getAbsoluteUrl({
-  urlKey: 'lotto',
+  urlKey: "lotto",
   useLang: true,
-  params: {drawId: '123'}
-})
+  params: { drawId: "123" }
+});
 // Result: 'https://veikkaus.fi/fi/lotto?drawId=123'
 ```
 
@@ -67,15 +70,15 @@ Creates a new URL generator instance with type-safe URL key validation.
 
 ```typescript
 type UrlOptions<TConfigUrls> = {
-  urlKey: keyof TConfigUrls // URL key from config (type-safe)
-  useLang?: boolean // Add language prefix to URL
-  params?: Record<string, string | undefined> | string // Query parameters
-  fragment?: string // Hash fragment
-  path?: string // Additional path segment
-  forcePlain?: boolean // Force plain mode parameter
-  language?: PageLanguage // Override language
-  stripParams?: boolean // Remove all parameters
-}
+  urlKey: keyof TConfigUrls; // URL key from config (type-safe)
+  useLang?: boolean; // Add language prefix to URL
+  params?: Record<string, string | undefined> | string; // Query parameters
+  fragment?: string; // Hash fragment
+  path?: string; // Additional path segment
+  forcePlain?: boolean; // Force plain mode parameter
+  language?: PageLanguage; // Override language
+  stripParams?: boolean; // Remove all parameters
+};
 ```
 
 ## Features
