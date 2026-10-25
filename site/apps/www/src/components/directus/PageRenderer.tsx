@@ -16,7 +16,7 @@ const PageRenderer: FC<Props> = async ({ slug }) => {
     <>
       <MainHeading>{page.title}</MainHeading>
 
-      {page.blocks.map((block, i) => {
+      {page.blocks.map((block) => {
         switch (block.collection) {
           case "block_wysiwyg":
             return <WysiwygPageBlockRenderer block={block} key={block.sort} />;

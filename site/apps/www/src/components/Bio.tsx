@@ -5,6 +5,7 @@ const Bio = () => {
   return (
     <div className={baseClass}>
       <div>
+        {/* oxlint-disable-next-line nextjs/no-img-element -- a 50px external avatar; next/image would only proxy it */}
         <img
           className={imgClass}
           src="https://www.gravatar.com/avatar/9cf0233ff15b51f29e5608cd4a1b905d?s=256"

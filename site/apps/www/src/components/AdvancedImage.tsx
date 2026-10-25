@@ -76,8 +76,8 @@ const AdvancedImage: FC<Props> = ({
         ...rest
       };
     })
-    .map((data) => {
-      return { data, builder: urlParamsFromConfig(data) };
+    .map((params) => {
+      return { data: params, builder: urlParamsFromConfig(params) };
     });
 
   const srcsets = images

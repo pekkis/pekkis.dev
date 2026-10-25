@@ -1,75 +1,69 @@
 {
   "name": "www",
-  "type": "module",
+  "version": "2.0.0",
   "private": true,
   "description": "pekkis.eu",
-  "version": "2.0.0",
-  "author": "Pekkis <pekkisx@gmail.com>",
-  "dependencies": {
-    "@directus/sdk": "^21.3.0",
-    "@next/bundle-analyzer": "^16.2.6",
-    "@sentry/nextjs": "^10.51.0",
-    "@vanilla-extract/css": "^1.20.1",
-    "clsx": "^2.1.1",
-    "encoding": "^0.1.13",
-    "html-react-parser": "^5.2.17",
-    "imgproxy": "^1.4.1",
-    "luxon": "^3.7.2",
-    "next": "^16.2.6",
-    "ramda": "^0.32.0",
-    "react": "^19.2.6",
-    "react-cookie-consent": "^10.0.1",
-    "react-dom": "^19.2.6",
-    "react-icons": "^5.6.0",
-    "react-intersection-observer": "^10.0.3",
-    "react-player": "^3.4.0",
-    "remeda": "^2.34.0"
-  },
-  "devDependencies": {
-    "@types/luxon": "^3.7.1",
-    "@types/node": "^24.12.2",
-    "@types/ramda": "^0.31.1",
-    "@types/react": "19.2.14",
-    "@typescript-eslint/eslint-plugin": "^8.59.2",
-    "@typescript-eslint/parser": "^8.59.2",
-    "@vanilla-extract/next-plugin": "^2.5.2",
-    "dotenv": "^17.4.2",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.6",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.3",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.21.0",
-    "typescript": "catalog:",
-    "typescript-eslint": "^8.59.2"
-  },
-  "homepage": "https://www.pekkis.eu",
   "keywords": [
-    "nextjs",
     "himapage",
+    "nextjs",
     "portal"
   ],
+  "homepage": "https://www.pekkis.eu",
   "license": "MIT",
-  "main": "n/a",
+  "author": "Pekkis <pekkisx@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
-  "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start --webpack",
-    "lint": "next lint"
   },
   "files": [
     ".next",
     "public"
   ],
+  "type": "module",
+  "main": "n/a",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "oxlint --deny-warnings"
+  },
+  "dependencies": {
+    "@directus/sdk": "^27.0.0",
+    "@next/bundle-analyzer": "^16.4.3",
+    "@sentry/nextjs": "^10.76.2",
+    "@vanilla-extract/css": "^1.21.3",
+    "clsx": "^2.1.1",
+    "encoding": "^0.1.13",
+    "html-react-parser": "^5.2.17",
+    "imgproxy": "^1.4.1",
+    "luxon": "^3.7.2",
+    "next": "^16.4.3",
+    "ramda": "^0.32.0",
+    "react": "^19.3.1",
+    "react-cookie-consent": "^10.0.2",
+    "react-dom": "^19.3.1",
+    "react-icons": "^5.7.0",
+    "react-intersection-observer": "^10.1.0",
+    "react-player": "^3.4.0",
+    "remeda": "^2.53.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.7.6",
+    "@types/node": "^24.19.2",
+    "@types/ramda": "^0.31.1",
+    "@types/react": "19.2.14",
+    "@vanilla-extract/next-plugin": "^2.5.2",
+    "dotenv": "^17.4.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
+    "typescript": "catalog:"
+  },
   "browserslist": [
-    "defaults and fully supports es6-module",
-    "maintained node versions"
+    "chrome >= 123",
+    "edge >= 123",
+    "firefox >= 120",
+    "safari >= 17.5",
+    "ios_saf >= 17.5"
   ],
-  "packageManager": "pnpm@11.26.0"
+  "packageManager": "pnpm@12.15.0"
 }

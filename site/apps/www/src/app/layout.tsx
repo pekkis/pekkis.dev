@@ -22,12 +22,6 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
-        <script
-          defer
-          data-domain="pekkis.eu"
-          src="https://analytics.pekkis.eu/js/script.js"
-        ></script>
       </head>
 
       <body className={merriweather.className}>{children}</body>

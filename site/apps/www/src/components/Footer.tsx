@@ -7,6 +7,7 @@ const Footer: FC = () => {
     <footer className={baseClass}>
       <Padder>
         Valmistettu Vantaalla fermentoimalla. Copyright &copy;{" "}
+        {/* oxlint-disable-next-line react/purity -- a server component, re-rendered by ISR: the year stays current */}
         {new Date().getFullYear()} Mikko &quot;Pekkis&quot; Forsström.
       </Padder>
     </footer>

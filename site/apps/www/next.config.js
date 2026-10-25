@@ -1,7 +1,14 @@
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
-const withVanillaExtract = createVanillaExtractPlugin();
+const withVanillaExtract = createVanillaExtractPlugin({
+  // Turbopack support is experimental and off by default.
+  // "auto" enables it only on Next >= 16; the webpack config is still
+  // emitted alongside, so `next build --webpack` keeps working.
+  unstable_turbopack: {
+    mode: "auto"
+  }
+});
 import process from "node:process";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 
 import { piped } from "remeda";
 
@@ -18,17 +25,12 @@ const nextConfig = {
   reactStrictMode: true,
   typescript: {
     ignoreBuildErrors: false
-  },
-  eslint: {
-    ignoreDuringBuilds: false
   }
 };
 
 const pieru = piped(withBundleAnalyzer, withVanillaExtract)(nextConfig);
 
 export default withSentryConfig(pieru, {
-
-
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

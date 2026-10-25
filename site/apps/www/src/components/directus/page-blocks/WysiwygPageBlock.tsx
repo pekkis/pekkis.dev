@@ -12,8 +12,6 @@ const WysiwygPageBlockRenderer: FC<Props> = ({ block }) => {
       <BlocksRenderer blocks={block.item.blocks.blocks} />
     </>
   );
-
-  return <div>wysigyG!</div>;
 };
 
 export default WysiwygPageBlockRenderer;

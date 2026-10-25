@@ -3,14 +3,16 @@ FROM node:24.22.1-alpine3.24@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 # The version in package.json's packageManager.
-RUN npm -g i pnpm@11.26.0
+RUN npm -g i pnpm@12.15.0
 
 FROM base AS builder
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN --mount=type=secret,id=env,target=/usr/src/app/apps/www/.env pnpm run -r build
+# The standalone output copies .env along; remove it so runtime env comes from compose's env_file only.
+RUN --mount=type=secret,id=env,target=/usr/src/app/apps/www/.env pnpm run -r build \
+  && find apps/www/.next/standalone -name ".env*" -delete
 RUN pnpm deploy --filter="./apps/www" --prod /prod/www
 
 FROM base AS prod-deps

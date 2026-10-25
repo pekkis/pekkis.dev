@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import VideoPlayer from "./VideoPlayer";
 import { nth } from "ramda";
 import { FC, useState } from "react";
@@ -18,19 +18,24 @@ type Props = {
   videos: PreachingType[];
 };
 
+// false on the server and during hydration, true afterwards: the player renders only in the browser.
+const subscribe = () => () => {};
+const useIsHydrated = () =>
+  useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+
 const Preachings: FC<Props> = ({ videos }) => {
-  const [isHydrated, setIsHydrated] = useState<boolean>(false);
+  const isHydrated = useIsHydrated();
   const [current, setCurrent] = useState<number>(0);
 
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
   const previous = useCallback(() => {
-    setCurrent((current) => Math.max(current - 1, 0));
+    setCurrent((index) => Math.max(index - 1, 0));
   }, [setCurrent]);
   const next = useCallback(() => {
-    setCurrent((current) => Math.min(current + 1, videos.length - 1));
+    setCurrent((index) => Math.min(index + 1, videos.length - 1));
   }, [setCurrent, videos]);
 
   if (!isHydrated) {
