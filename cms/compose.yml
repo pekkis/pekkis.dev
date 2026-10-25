@@ -1,6 +1,7 @@
 services:
   directus_database:
-    image: postgis/postgis:17-3.5
+    image: postgis/postgis:17-3.5@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6
+    restart: unless-stopped
     platform: linux/x86_64
     networks:
       - pekkis
@@ -19,7 +20,8 @@ services:
       start_period: 30s
 
   directus_cache:
-    image: redis:7
+    image: redis:7.4.11@sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b
+    restart: unless-stopped
     networks:
       - pekkis
     healthcheck:
@@ -33,9 +35,11 @@ services:
   directus:
     networks:
       - pekkis
-    image: directus/directus:11.15.4
+    image: directus/directus:11.15.4@sha256:d745a30ccb7e933a33ee1c25124286c0dcac63876170d67320bfb92b454d758b
+    restart: unless-stopped
+    # Caddy proxies to it; Docker bypasses ufw, so bind to localhost only.
     ports:
-      - 3051:8055
+      - "127.0.0.1:3051:8055"
     depends_on:
       directus_database:
         condition: service_healthy

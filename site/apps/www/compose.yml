@@ -3,13 +3,23 @@ services:
     build:
       context: "../.."
       dockerfile: apps/www/docker/next/Dockerfile
+      # The build prerenders pages from the CMS, so it needs .env, but only while building:
+      # as a secret it never ends up in an image layer.
+      secrets:
+        - env
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
     networks:
       - web
+    # Caddy proxies to it; Docker bypasses ufw, so bind to localhost only.
     ports:
-      - 3050:3000
+      - "127.0.0.1:3050:3000"
 
-volumes:
-  pg-data:
+secrets:
+  env:
+    file: .env
 
 networks:
   web:
