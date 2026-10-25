@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /site/apps/www/docker/next
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 3
+  - package-ecosystem: docker-compose
+    directory: /cms
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 3

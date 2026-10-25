@@ -1,15 +1,17 @@
 services:
   directus_database:
-    image: postgis/postgis:17-3.5@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6
+    # Pinned by version and digest: upgrades happen when we decide (Dependabot proposes them).
+    # Plain Postgres: nothing in the CMS uses PostGIS.
+    image: postgres:18.6-alpine3.24@sha256:898c60cb390d1085bc97bdd6a1ae968757421df394b071848b52b1c09c89d6a5
     restart: unless-stopped
-    platform: linux/x86_64
     networks:
       - pekkis
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      # Postgres 18 keeps its data in a versioned folder under /var/lib/postgresql.
+      - pg18-data:/var/lib/postgresql
     environment:
       POSTGRES_USER: "directus"
-      POSTGRES_PASSWORD: "directus"
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
       POSTGRES_DB: "directus"
     healthcheck:
       test: ["CMD", "pg_isready", "--host=localhost", "--username=directus"]
@@ -20,7 +22,7 @@ services:
       start_period: 30s
 
   directus_cache:
-    image: redis:7.4.11@sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b
+    image: redis:8.10.2-alpine@sha256:0bf6577d7774e592b29d093e3ac9390eb91e13d72c21e506afce736de5e0eeb0
     restart: unless-stopped
     networks:
       - pekkis
@@ -35,7 +37,7 @@ services:
   directus:
     networks:
       - pekkis
-    image: directus/directus:11.15.4@sha256:d745a30ccb7e933a33ee1c25124286c0dcac63876170d67320bfb92b454d758b
+    image: directus/directus:12.5.1@sha256:ef6fc027605ea659a972356e0c35fd7f88b02118b0b3a322dafbec3cc709fdab
     restart: unless-stopped
     # Caddy proxies to it; Docker bypasses ufw, so bind to localhost only.
     ports:
@@ -55,18 +57,26 @@ services:
       DB_PORT: "5432"
       DB_DATABASE: "directus"
       DB_USER: "directus"
-      DB_PASSWORD: "directus"
-      ADMIN_EMAIL: "pekkisx@gmail.com"
-      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
       CACHE_ENABLED: "true"
       CACHE_AUTO_PURGE: "true"
       CACHE_STORE: "redis"
       REDIS: "redis://directus_cache:6379"
-      SECRET: ${DIRECTUS_SECRET}
+      SECRET: ${DIRECTUS_SECRET:?set DIRECTUS_SECRET in .env}
       PUBLIC_URL: "https://cms.pekkis.eu"
+      # Behind Caddy: take the client's IP from X-Forwarded-For (Directus 12 defaults to false).
+      IP_TRUST_PROXY: "true"
+      TELEMETRY: "false"
+    healthcheck:
+      # /server/health needs authentication since Directus 12; /server/ping is the liveness check.
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8055/server/ping || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
 
 volumes:
-  pg-data:
+  pg18-data:
 
 networks:
   pekkis:
